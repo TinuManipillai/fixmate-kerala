@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>FixMate Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#ff6a1a;--dark:#1c2340;--line:#e7e8ef;--mute:#787a8c;--bg:#f6f7fb;}
+*{box-sizing:border-box}body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--dark);}
+header{background:#fff;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+.brand{font-weight:700;font-size:18px}.brand span{color:var(--accent)}
+button{font-family:inherit;cursor:pointer}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-weight:700;font-size:14px}
+.btn.ghost{background:#fff;color:var(--dark);border:1px solid var(--line)}
+.wrap{max-width:1100px;margin:0 auto;padding:20px 16px}
+.login{max-width:360px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
+.login h2{margin:0 0 16px}
+input,select,textarea{font-family:inherit;font-size:14px;padding:9px 10px;border:1px solid var(--line);border-radius:8px;width:100%;background:#fff;color:var(--dark)}
+.login input{margin-bottom:10px}
+.err{color:#d93025;font-size:13px;margin-top:8px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px}
+.stat small{color:var(--mute);display:block;font-size:12px}.stat b{font-size:22px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:6px 14px;font-size:13px;font-weight:500}
+.chip.on{background:var(--dark);color:#fff;border-color:var(--dark)}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.top h3{margin:0;font-size:16px}.mute{color:var(--mute);font-size:13px}
+.badge{font-size:12px;font-weight:700;border-radius:999px;padding:4px 12px;background:#ffe9dc;color:#b34700;white-space:nowrap}
+.badge.s5,.badge.s6{background:#dcf5e4;color:#14753a}
+ul{margin:8px 0;padding-left:18px;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
+.grid label{font-size:12px;color:var(--mute);display:block;margin-bottom:3px}
+.profit{font-weight:700;font-size:16px;padding-top:8px}
+.links a{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-right:14px}
+.empty{text-align:center;color:var(--mute);padding:40px}
+.saved{font-size:12px;color:#14753a;margin-left:8px}
+</style></head><body>
+<div id="loginView" class="login" style="display:none">
+  <h2>FixMate dashboard</h2>
+  <input id="em" type="email" placeholder="Email"><input id="pw" type="password" placeholder="Password">
+  <button class="btn" style="width:100%" onclick="login()">Log in</button><div class="err" id="lerr"></div>
+</div>
+<div id="appView" style="display:none">
+<header><div class="brand">FixMate <span>Dashboard</span></div><div><button class="btn ghost" onclick="load()">Refresh</button> <button class="btn ghost" onclick="logout()">Log out</button></div></header>
+<div class="wrap">
+  <div class="stats" id="stats"></div>
+  <div class="filters" id="filters"></div>
+  <div id="list"></div>
+</div></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+const CONFIG={url:'https://jwdybqxlqnenjvvtaiww.supabase.co',key:'sb_publishable_SUxPMzkPftNsYKkEGlbQwA_qldP4f6K'};
+const STATUSES=['New','Forwarded to Sanal','Sanal called','Visit scheduled','Visit done','Payment received by Sanal','Payment settled'];
+const sb=window.supabase.createClient(CONFIG.url,CONFIG.key);
+let rows=[],filter='All';
+const $=id=>document.getElementById(id);
+const rs=n=>'Rs '+Math.round(Number(n)||0).toLocaleString('en-IN');
+async function init(){const {data}=await sb.auth.getSession();show(!!data.session);if(data.session)load();}
+function show(a){$('loginView').style.display=a?'none':'block';$('appView').style.display=a?'block':'none';}
+async function login(){$('lerr').textContent='';const {error}=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});if(error){$('lerr').textContent=error.message;return;}show(true);load();}
+async function logout(){await sb.auth.signOut();show(false);}
+async function load(){const {data,error}=await sb.from('bookings').select('*').order('created_at',{ascending:false});if(error){alert(error.message);return;}rows=data;render();}
+function pay(r){return r.total_payment!=null&&r.total_payment!==''?Number(r.total_payment):Number(r.total)||0;}
+function profit(r){return r.sanal_payout==null||r.sanal_payout===''?null:pay(r)-Number(r.sanal_payout);}
+function render(){
+  const act=rows;
+  const collected=act.filter(r=>STATUSES.indexOf(r.status)>=5).reduce((s,r)=>s+pay(r),0);
+  const payouts=act.filter(r=>r.sanal_payout!=null).reduce((s,r)=>s+Number(r.sanal_payout),0);
+  const prof=act.reduce((s,r)=>s+(profit(r)||0),0);
+  const settled=act.filter(r=>r.status==='Payment settled').reduce((s,r)=>s+(profit(r)||0),0);
+  $('stats').innerHTML=[['Bookings',rows.length],['New',rows.filter(r=>r.status==='New').length],['Payment received',rs(collected)],['Paid to Sanal',rs(payouts)],['Our profit',rs(prof)],['Profit settled',rs(settled)]].map(x=>`<div class="stat"><small>${x[0]}</small><b>${x[1]}</b></div>`).join('');
+  $('filters').innerHTML=['All',...STATUSES].map(s=>`<button class="chip ${s===filter?'on':''}" onclick="setF('${s}')">${s}</button>`).join('');
+  const list=rows.filter(r=>filter==='All'||r.status===filter);
+  $('list').innerHTML=list.length?list.map(card).join(''):'<div class="empty">No bookings here yet</div>';
+}
+function setF(s){filter=s;render();}
+function esc(t){return String(t==null?'':t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function card(r){
+  const idx=STATUSES.indexOf(r.status),p=profit(r);
+  const items=(r.items||[]).map(i=>`<li>${esc(i.name)}${i.hours?' ('+i.hours+'h)':''} : ${rs(i.price)}</li>`).join('');
+  const ph=String(r.phone||'').replace(/\D/g,'');const wa='https://wa.me/'+(ph.length===10?'91'+ph:ph);
+  const dt=new Date(r.created_at).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'});
+  return `<div class="card" id="c${r.id}"><div class="top"><div><h3>${esc(r.order_no||('#'+r.id))} &middot; ${esc(r.name)}</h3><div class="mute">${dt} | ${esc(r.area)} ${esc(r.pincode)}</div></div><span class="badge s${idx}">${esc(r.status)}</span></div>
+  <div class="mute" style="margin-top:6px">${esc(r.address)}<br>Preferred: ${esc(r.preferred_date)} ${esc(r.preferred_time)}${r.details?'<br>Notes: '+esc(r.details):''}</div>
+  <ul>${items}</ul><div><b>Booked total: ${rs(r.total)}</b></div>
+  <div class="links" style="margin-top:8px"><a href="tel:+${ph.length===10?'91'+ph:ph}">Call customer</a><a href="${wa}" target="_blank">WhatsApp customer</a></div>
+  <div class="grid">
+   <div><label>Status</label><select onchange="upd(${r.id},'status',this.value)">${STATUSES.map(s=>`<option ${s===r.status?'selected':''}>${s}</option>`).join('')}</select></div>
+   <div><label>Total payment (Rs)</label><input type="number" value="${r.total_payment!=null?r.total_payment:''}" placeholder="${Math.round(Number(r.total)||0)}" onchange="upd(${r.id},'total_payment',this.value)"></div>
+   <div><label>Paid to Sanal (Rs)</label><input type="number" value="${r.sanal_payout!=null?r.sanal_payout:''}" onchange="upd(${r.id},'sanal_payout',this.value)"></div>
+   <div><label>Our profit</label><div class="profit">${p==null?'-':rs(p)}</div></div>
+   <div style="grid-column:1/-1"><label>Internal notes</label><textarea rows="2" onchange="upd(${r.id},'notes',this.value)">${esc(r.notes)}</textarea></div>
+  </div><span class="saved" id="sv${r.id}"></span></div>`;
+}
+async function upd(id,f,v){
+  const val=(f==='total_payment'||f==='sanal_payout')?(v===''?null:Number(v)):v;
+  const {error}=await sb.from('bookings').update({[f]:val}).eq('id',id);
+  if(error){alert(error.message);return;}
+  const r=rows.find(x=>x.id===id);r[f]=val;render();
+  const el=$('sv'+id);if(el){el.textContent='Saved';setTimeout(()=>{if($('sv'+id))$('sv'+id).textContent='';},1500);}
+}
+init();
+</script></body></html>
