@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fixmatekerala.com/sitemap.xml
