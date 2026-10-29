@@ -1,16 +1,25 @@
 <!doctype html>
+<!-- FixMate dashboard rev 2: added shared Tasks tab (rev 1 bookings only) -->
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>FixMate Dashboard</title>
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--accent:#ff6a1a;--dark:#1c2340;--line:#e7e8ef;--mute:#787a8c;--bg:#f6f7fb;}
+:root{--accent:#ff6a1a;--dark:#1c2340;--line:#e7e8ef;--mute:#787a8c;--bg:#f6f7fb;--tinu:#3a4a8c;--parv:#c2410c;--claude:#0f9a8a;--ok:#14753a;}
 *{box-sizing:border-box}body{margin:0;font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--dark);}
-header{background:#fff;border-bottom:1px solid var(--line);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:5}
+[hidden]{display:none!important}
+header{background:#fff;border-bottom:1px solid var(--line);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;position:sticky;top:0;z-index:5}
 .brand{font-weight:700;font-size:18px}.brand span{color:var(--accent)}
+.who{font-size:12px;color:var(--mute);display:block;font-weight:500}
+.head-r{display:flex;gap:8px;flex-wrap:wrap}
 button{font-family:inherit;cursor:pointer}
 .btn{background:var(--accent);color:#fff;border:none;border-radius:999px;padding:9px 18px;font-weight:700;font-size:14px}
 .btn.ghost{background:#fff;color:var(--dark);border:1px solid var(--line)}
+.tabs{display:flex;gap:6px;background:#fff;border-bottom:1px solid var(--line);padding:0 20px;position:sticky;top:61px;z-index:4}
+.tab{background:none;border:none;border-bottom:3px solid transparent;padding:12px 6px;margin-right:14px;font-weight:700;font-size:14px;color:var(--mute)}
+.tab.on{color:var(--dark);border-bottom-color:var(--accent)}
+.tab em{font-style:normal;font-size:11px;background:var(--accent);color:#fff;border-radius:999px;padding:1px 7px;margin-left:5px}
 .wrap{max-width:1100px;margin:0 auto;padding:20px 16px}
 .login{max-width:360px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:16px;padding:28px}
 .login h2{margin:0 0 16px}
@@ -35,6 +44,33 @@ ul{margin:8px 0;padding-left:18px;font-size:14px}
 .links a{font-size:13px;font-weight:700;color:var(--accent);text-decoration:none;margin-right:14px}
 .empty{text-align:center;color:var(--mute);padding:40px}
 .saved{font-size:12px;color:#14753a;margin-left:8px}
+
+/* Tasks */
+.prog{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.prog-top b{font-size:18px}
+.bar{height:8px;border-radius:99px;background:var(--bg);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--ok);border-radius:99px;transition:width .3s}
+.addbox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:16px}
+.addrow{display:grid;grid-template-columns:1fr 150px 160px auto;gap:8px;margin-top:10px}
+@media (max-width:700px){.addrow{grid-template-columns:1fr 1fr}.addrow #tTitle{grid-column:1/-1}.addrow .btn{grid-column:1/-1}}
+.group{background:#fff;border:1px solid var(--line);border-radius:14px;padding:6px 16px 10px;margin-bottom:14px}
+.group.hot{border:2px solid var(--accent)}
+.group h3{font-size:15px;margin:10px 0 4px;display:flex;justify-content:space-between;gap:10px}
+.group h3 span{font-size:12px;color:var(--mute);font-weight:500}
+.task{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)}
+.group h3+.task{border-top:none}
+.task input[type=checkbox]{width:20px;height:20px;flex-shrink:0;margin:1px 0 0;accent-color:var(--ok);cursor:pointer}
+.tag{flex-shrink:0;width:74px;text-align:center;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:2px 6px;border-radius:6px;border:1px solid currentColor;margin-top:1px}
+.tag.Tinu{color:var(--tinu)}.tag.Parvathy{color:var(--parv)}.tag.Claude{color:var(--claude)}
+.ttxt{flex:1;min-width:0;font-size:14px}
+.ttxt small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+.task.done .ttxt span{color:var(--mute);text-decoration:line-through}
+.task.late .ttxt small{color:#d93025;font-weight:700}
+.del{background:none;border:none;color:var(--mute);font-size:12px;padding:2px 4px;flex-shrink:0}
+.del.arm{color:#d93025;font-weight:700}
+.opts{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);margin-bottom:12px}
+.opts input{width:auto}
 </style></head><body>
 <div id="loginView" class="login" style="display:none">
   <h2>FixMate dashboard</h2>
@@ -42,24 +78,49 @@ ul{margin:8px 0;padding-left:18px;font-size:14px}
   <button class="btn" style="width:100%" onclick="login()">Log in</button><div class="err" id="lerr"></div>
 </div>
 <div id="appView" style="display:none">
-<header><div class="brand">FixMate <span>Dashboard</span></div><div><button class="btn ghost" onclick="load()">Refresh</button> <button class="btn ghost" onclick="logout()">Log out</button></div></header>
-<div class="wrap">
+<header><div class="brand">FixMate <span>Dashboard</span><span class="who" id="who"></span></div><div class="head-r"><button class="btn ghost" onclick="loadAll()">Refresh</button> <button class="btn ghost" onclick="logout()">Log out</button></div></header>
+<nav class="tabs"><button class="tab on" id="tabB" onclick="tab('b')">Bookings</button><button class="tab" id="tabT" onclick="tab('t')">Tasks<em id="todayCount" hidden></em></button></nav>
+<div class="wrap" id="bookView">
   <div class="stats" id="stats"></div>
   <div class="filters" id="filters"></div>
   <div id="list"></div>
-</div></div>
+</div>
+<div class="wrap" id="taskView" hidden>
+  <div class="filters" id="tFilters"></div>
+  <div class="prog"><div class="prog-top"><b id="tCount">0 of 0 done</b><span class="mute" id="tSub"></span></div><div class="bar"><i id="tBar" style="width:0"></i></div></div>
+  <div class="addbox">
+    <b>Add a task</b>
+    <div class="addrow">
+      <input id="tTitle" type="text" placeholder="What needs doing?" maxlength="200">
+      <select id="tOwner"></select>
+      <input id="tDue" type="date">
+      <button class="btn" onclick="addTask()">Add</button>
+    </div>
+    <div class="err" id="tErr"></div>
+  </div>
+  <label class="opts"><input type="checkbox" id="hideDone" onchange="renderTasks()"> Hide done tasks</label>
+  <div id="tList"></div>
+</div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
 const CONFIG={url:'https://jwdybqxlqnenjvvtaiww.supabase.co',key:'sb_publishable_SUxPMzkPftNsYKkEGlbQwA_qldP4f6K'};
 const STATUSES=['New','Forwarded to Sanal','Sanal called','Visit scheduled','Visit done','Payment received by Sanal','Payment settled'];
+const PEOPLE={'tinu_m_nair@yahoo.co.in':'Tinu','prayogamarketing@gmail.com':'Parvathy'};
+const SECTION_ORDER=['Claude','WhatsApp check','Week 1','Week 2','Week 3','Week 4','Week 5','December trip','Added tasks'];
 const sb=window.supabase.createClient(CONFIG.url,CONFIG.key);
-let rows=[],filter='All';
+let rows=[],filter='All',tasks=[],tFilter='all',me='',armed=null;
 const $=id=>document.getElementById(id);
 const rs=n=>'Rs '+Math.round(Number(n)||0).toLocaleString('en-IN');
-async function init(){const {data}=await sb.auth.getSession();show(!!data.session);if(data.session)load();}
+async function init(){const {data}=await sb.auth.getSession();show(!!data.session);if(data.session){setMe(data.session);loadAll();}}
+function setMe(sess){const em=(sess&&sess.user&&sess.user.email||'').toLowerCase();me=PEOPLE[em]||em;$('who').textContent='Logged in as '+me;}
 function show(a){$('loginView').style.display=a?'none':'block';$('appView').style.display=a?'block':'none';}
-async function login(){$('lerr').textContent='';const {error}=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});if(error){$('lerr').textContent=error.message;return;}show(true);load();}
-async function logout(){await sb.auth.signOut();show(false);}
+async function login(){$('lerr').textContent='';const {data,error}=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});if(error){$('lerr').textContent=error.message;return;}show(true);setMe(data.session);loadAll();}
+async function logout(){await sb.auth.signOut();tasks=[];rows=[];show(false);}
+function loadAll(){load();loadTasks();}
+function tab(t){$('bookView').hidden=t!=='b';$('taskView').hidden=t!=='t';$('tabB').classList.toggle('on',t==='b');$('tabT').classList.toggle('on',t==='t');window.scrollTo(0,0);}
+
+/* ---------- Bookings (unchanged from rev 1) ---------- */
 async function load(){const {data,error}=await sb.from('bookings').select('*').order('created_at',{ascending:false});if(error){alert(error.message);return;}rows=data;render();}
 function pay(r){return r.total_payment!=null&&r.total_payment!==''?Number(r.total_payment):Number(r.total)||0;}
 function profit(r){return r.sanal_payout==null||r.sanal_payout===''?null:pay(r)-Number(r.sanal_payout);}
@@ -100,5 +161,69 @@ async function upd(id,f,v){
   const r=rows.find(x=>x.id===id);r[f]=val;render();
   const el=$('sv'+id);if(el){el.textContent='Saved';setTimeout(()=>{if($('sv'+id))$('sv'+id).textContent='';},1500);}
 }
+
+/* ---------- Tasks ---------- */
+const pad=n=>String(n).padStart(2,'0');
+function todayStr(){const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());}
+function fmtDate(s){if(!s)return '';const [y,m,d]=s.split('-').map(Number);const dt=new Date(y,m-1,d);return dt.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'});}
+function owners(){return me==='Tinu'?['Tinu','Parvathy','Claude']:['Tinu','Parvathy'];}
+async function loadTasks(){
+  const {data,error}=await sb.from('tasks').select('*').order('sort_order',{ascending:true}).order('id',{ascending:true});
+  if(error){$('tList').innerHTML='<div class="empty">Could not load tasks: '+esc(error.message)+'</div>';return;}
+  tasks=data||[];
+  $('tOwner').innerHTML=owners().map(o=>`<option ${o===me?'selected':''}>${o}</option>`).join('');
+  renderTasks();
+}
+function visible(t){return tFilter==='all'||t.owner===tFilter;}
+function renderTasks(){
+  const today=todayStr();
+  $('tFilters').innerHTML=[['all','Everyone'],...owners().map(o=>[o,o])].map(([k,l])=>`<button class="chip ${k===tFilter?'on':''}" onclick="setTF('${k}')">${l}</button>`).join('');
+  const mine=tasks.filter(visible);
+  const n=mine.filter(t=>t.done).length;
+  $('tCount').textContent=(tFilter==='all'?'Everyone':tFilter)+': '+n+' of '+mine.length+' done';
+  $('tBar').style.width=(mine.length?100*n/mine.length:0)+'%';
+  const due=mine.filter(t=>!t.done&&t.due_date&&t.due_date<=today);
+  $('tSub').textContent=due.length?due.length+' due today or overdue':'Nothing overdue';
+  const myDue=tasks.filter(t=>!t.done&&t.due_date&&t.due_date<=today&&t.owner===me).length;
+  $('todayCount').hidden=!myDue;$('todayCount').textContent=myDue;
+  const hide=$('hideDone').checked;
+  let html='';
+  if(due.length) html+=group('Today and overdue',due,true);
+  const secs=[...new Set(mine.map(t=>t.section||'Added tasks'))].sort((a,b)=>{const ia=SECTION_ORDER.indexOf(a),ib=SECTION_ORDER.indexOf(b);return (ia<0?99:ia)-(ib<0?99:ib);});
+  secs.forEach(s=>{let list=mine.filter(t=>(t.section||'Added tasks')===s);const total=list.length,dn=list.filter(t=>t.done).length;if(hide)list=list.filter(t=>!t.done);if(list.length)html+=group(s,list,false,dn+'/'+total);});
+  $('tList').innerHTML=html||'<div class="empty">No tasks here. Add one above.</div>';
+}
+function group(title,list,hot,count){
+  return `<div class="group ${hot?'hot':''}"><h3>${esc(title)}<span>${count||list.length}</span></h3>${list.map(taskRow).join('')}</div>`;
+}
+function taskRow(t){
+  const today=todayStr(),late=!t.done&&t.due_date&&t.due_date<today;
+  const meta=[t.due_date?(late?'Overdue, ':'')+fmtDate(t.due_date):'',t.slot||''].filter(Boolean).join(' · ');
+  return `<div class="task ${t.done?'done':''} ${late?'late':''}"><input type="checkbox" aria-label="Done" ${t.done?'checked':''} onchange="toggleTask(${t.id},this.checked)"><span class="tag ${esc(t.owner)}">${esc(t.owner)}</span><div class="ttxt"><span>${esc(t.title)}</span>${meta?'<small>'+esc(meta)+'</small>':''}</div><button class="del ${armed===t.id?'arm':''}" onclick="delTask(${t.id})" aria-label="Delete task">${armed===t.id?'Delete?':'✕'}</button></div>`;
+}
+function setTF(k){tFilter=k;renderTasks();}
+async function toggleTask(id,on){
+  const t=tasks.find(x=>x.id===id);if(!t)return;
+  const patch={done:on,done_at:on?new Date().toISOString():null};
+  const {error}=await sb.from('tasks').update(patch).eq('id',id);
+  if(error){alert('Could not save: '+error.message);renderTasks();return;}
+  Object.assign(t,patch);renderTasks();
+}
+async function addTask(){
+  $('tErr').textContent='';
+  const title=$('tTitle').value.trim();if(!title){$('tErr').textContent='Type the task first.';return;}
+  const row={title,owner:$('tOwner').value,due_date:$('tDue').value||null,section:'Added tasks',sort_order:10000};
+  const {data,error}=await sb.from('tasks').insert(row).select();
+  if(error){$('tErr').textContent='Could not add: '+error.message;return;}
+  tasks.push(...(data||[]));$('tTitle').value='';$('tDue').value='';renderTasks();
+}
+async function delTask(id){
+  if(armed!==id){armed=id;renderTasks();setTimeout(()=>{if(armed===id){armed=null;renderTasks();}},3000);return;}
+  armed=null;
+  const {error}=await sb.from('tasks').delete().eq('id',id);
+  if(error){alert('Could not delete: '+error.message);return;}
+  tasks=tasks.filter(t=>t.id!==id);renderTasks();
+}
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement===$('tTitle'))addTask();});
 init();
 </script></body></html>
