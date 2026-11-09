@@ -1,7 +1,16 @@
 <!DOCTYPE html>
-<!-- FixMate Kerala index.html rev 7: footer links to area pages and home tips (rev 6 category photos moved to /images, rev 5 logo links to home, rev 4 favicon, rev 3 SEO tags and service pages, rev 2 Search Console verification) -->
+<!-- FixMate Kerala index.html rev 8: Google Analytics with lead and checkout events (rev 7 footer links to area pages and home tips (rev 6 category photos moved to /images, rev 5 logo links to home, rev 4 favicon, rev 3 SEO tags and service pages, rev 2 Search Console verification) -->
 <html lang="en">
 <head>
+<!-- ga4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XYRFZE44LK"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','G-XYRFZE44LK');
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var ev=null;
+if(h.indexOf('tel:')===0)ev='click_call';else if(h.indexOf('wa.me')>-1||h.indexOf('whatsapp')>-1)ev='click_whatsapp';else if(a.classList.contains('book'))ev='click_book';
+if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="kLYzl98oE_zBxUs-I8_wlrcOdy92PvD61doIbeNPg_A" />
@@ -691,6 +700,7 @@
     else { o.style.display='none'; m.textContent='Select your location'; }
   }
   function openCheckout(){
+    try { if (window.gtag) gtag('event','begin_checkout',{value:cartTotal(),currency:'INR'}); } catch (err) {}
     try{
       const pl=document.getElementById('locationSelect').value, op=document.getElementById('otherPin').value.trim();
       if(pl!=='Other') document.getElementById('area').value=pl;
@@ -744,6 +754,7 @@
     const dd = new Date();
     const orderNo = 'FM-' + String(dd.getFullYear()).slice(2) + String(dd.getMonth()+1).padStart(2,'0') + String(dd.getDate()).padStart(2,'0') + '-' + Math.floor(1000 + Math.random()*9000);
     order.orderNo = orderNo;
+    try { if (window.gtag) gtag('event','generate_lead',{value:order.total,currency:'INR',area:order.area,order_no:orderNo}); } catch (err) {}
     const lines = order.items.map(i => '- ' + i.name + (i.hours ? ' (' + i.hours + 'h)' : '') + ' : Rs ' + i.price);
     const text = 'NEW BOOKING - FixMate Kerala\nOrder no: ' + orderNo + '\n' +
       'Name: ' + order.name + '\nPhone: ' + order.phone + '\n' +

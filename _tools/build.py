@@ -459,6 +459,34 @@ def write_sitemap(extra):
     open(f"{REPO}/sitemap.xml", "w").write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + body + "</urlset>\n")
 
 
+GA_ID = "G-XYRFZE44LK"
+GA_MARK = "<!-- ga4 -->"
+GA_SNIPPET = GA_MARK + f"""
+<script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('js',new Date());gtag('config','{GA_ID}');
+document.addEventListener('click',function(e){{var a=e.target.closest&&e.target.closest('a');if(!a)return;var h=a.getAttribute('href')||'';var ev=null;
+if(h.indexOf('tel:')===0)ev='click_call';else if(h.indexOf('wa.me')>-1||h.indexOf('whatsapp')>-1)ev='click_whatsapp';else if(a.classList.contains('book'))ev='click_book';
+if(ev)gtag('event',ev,{{link_url:h,page_path:location.pathname}});}},true);
+</script>"""
+
+
+def add_ga_everywhere():
+    import glob
+    n = 0
+    for f in glob.glob(f"{REPO}/*.html") + glob.glob(f"{REPO}/blog/**/*.html", recursive=True):
+        if f.endswith("dashboard.html"):
+            continue
+        t = open(f, encoding="utf-8").read()
+        if GA_MARK in t:
+            continue
+        t = t.replace("<head>", "<head>\n" + GA_SNIPPET, 1)
+        open(f, "w", encoding="utf-8").write(t)
+        n += 1
+    return n
+
+
 if __name__ == "__main__":
     import os
     pages = []
@@ -478,5 +506,6 @@ if __name__ == "__main__":
         open(f"{REPO}/{fn}", "w", encoding="utf-8").write(content)
     n = sum(add_malayalam(s[0]) for s in SERVICES)
     write_sitemap([p for p, _ in pages])
+    print("GA added to", add_ga_everywhere(), "pages")
     print(len(pages), "pages written;", n, "service pages updated")
     print("\n".join(p for p, _ in pages))
