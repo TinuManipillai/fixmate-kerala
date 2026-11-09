@@ -4,6 +4,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data import SERVICES, AREAS, ML_AREAS, TOP, INTROS, INTROS2
 from articles2 import ARTICLES2
 from articles_daily import ARTICLES_DAILY
+from articles_ml import ARTICLES_ML
+try:
+    from articles_daily_ml import ARTICLES_DAILY_ML
+    ARTICLES_ML.update(ARTICLES_DAILY_ML)
+except ImportError:
+    pass
 
 REPO = sys.argv[1]
 BASE = "https://fixmatekerala.com"
@@ -289,12 +295,13 @@ def article_page(slug, title, desc, svc, image, content, date="2026-11-10"):
          "publisher": BUSINESS_REF, "mainEntityOfPage": BASE + path},
         crumbs_schema([("Home", "/"), ("Home tips", "/blog/"), (title, path)])]}
     s = SVC[svc]
+    switch = f'<p style="margin:6px 0 0"><a href="/blog/ml/{slug}" lang="ml" style="color:var(--accent);font-weight:700;text-decoration:none">മലയാളത്തിൽ വായിക്കുക</a></p>' if slug in ARTICLES_ML else ''
     body = f"""{header(wa)}
 <main class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog/">Home tips</a> &rsaquo; {html.escape(title)}</nav>
   <article class="post">
     <h1>{html.escape(title)}</h1>
-    <div class="meta">FixMate Kerala · {pretty(date)}</div>
+    <div class="meta">FixMate Kerala · {pretty(date)}</div>{switch}
     {content}
     <div class="band">
       <div><h2>Need a hand with this?</h2><p>See {s[1]} jobs and prices for North Paravur and nearby places.</p></div>
@@ -302,7 +309,70 @@ def article_page(slug, title, desc, svc, image, content, date="2026-11-10"):
     </div>
   </article>
 </main>"""
-    return path, head(f"{title} | FixMate Kerala", desc, path, image, schema) + body + tail(wa)
+    page = head(f"{title} | FixMate Kerala", desc, path, image, schema) + body + tail(wa)
+    if slug in ARTICLES_ML:
+        page = page.replace('<link rel="canonical"', hreflang(slug) + '\n<link rel="canonical"', 1)
+    return path, page
+
+
+def hreflang(slug):
+    return (f'<link rel="alternate" hreflang="en" href="{BASE}/blog/{slug}">\n'
+            f'<link rel="alternate" hreflang="ml" href="{BASE}/blog/ml/{slug}">\n'
+            f'<link rel="alternate" hreflang="x-default" href="{BASE}/blog/{slug}">')
+
+
+def article_page_ml(slug, svc, image, date):
+    title, desc, content = ARTICLES_ML[slug]
+    path = f"/blog/ml/{slug}"
+    wa = wa_link("Hi FixMate Kerala, I read your home tips and need help.")
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Article", "headline": title, "description": desc, "image": BASE + image, "inLanguage": "ml",
+         "datePublished": date, "dateModified": date,
+         "author": {"@type": "Organization", "name": "FixMate Kerala", "url": BASE + "/"},
+         "publisher": BUSINESS_REF, "mainEntityOfPage": BASE + path},
+        crumbs_schema([("Home", "/"), ("Home tips", "/blog/ml/"), (title, path)])]}
+    s = SVC[svc]
+    body = f"""{header(wa)}
+<main class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> &rsaquo; <a href="/blog/ml/">ഹോം ടിപ്സ്</a> &rsaquo; {html.escape(title)}</nav>
+  <article class="post">
+    <h1>{html.escape(title)}</h1>
+    <div class="meta">FixMate Kerala · {pretty(date)}</div>
+    <p style="margin:6px 0 0"><a href="/blog/{slug}" lang="en" style="color:var(--accent);font-weight:700;text-decoration:none">Read in English</a></p>
+    {content}
+    <div class="band">
+      <div><h2>സഹായം വേണോ?</h2><p>{s[2]} ജോലികളും നിരക്കുകളും കാണുക. നോർത്ത് പറവൂരിലും അടുത്ത സ്ഥലങ്ങളിലും.</p></div>
+      <div class="ctas" style="margin:0"><a class="cbtn book" href="/{svc}-north-paravur">നിരക്കുകൾ</a><a class="cbtn wa" href="{wa}" target="_blank" rel="noopener">{WA_SVG}WhatsApp</a></div>
+    </div>
+  </article>
+</main>"""
+    page = head(f"{title} | FixMate Kerala", desc, path, image, schema) + body + tail(wa)
+    page = page.replace('<html lang="en">', '<html lang="ml">', 1).replace('<meta property="og:locale" content="en_IN">', '<meta property="og:locale" content="ml_IN">', 1)
+    page = page.replace('<link rel="canonical"', hreflang(slug) + '\n<link rel="canonical"', 1)
+    return path, page
+
+
+def blog_index_ml():
+    path = "/blog/ml/"
+    title = "ഹോം ടിപ്സ്: കേരളത്തിലെ വീടുകൾക്ക് | FixMate Kerala"
+    desc = "കേരളത്തിലെ വീടുകളുടെ പരിപാലനത്തിനും റിപ്പയറിനും ഉപകാരപ്രദമായ ടിപ്സ്, FixMate Kerala, നോർത്ത് പറവൂർ."
+    wa = wa_link("Hi FixMate Kerala, I need help at home.")
+    items = [a for a in reversed(ARTICLES) if a[0] in ARTICLES_ML]
+    cards = "".join(f'<a href="/blog/ml/{a[0]}"><b>{html.escape(ARTICLES_ML[a[0]][0])}</b><p>{html.escape(ARTICLES_ML[a[0]][1])}</p></a>' for a in items)
+    schema = {"@context": "https://schema.org", "@graph": [
+        {"@type": "Blog", "name": "FixMate Kerala ഹോം ടിപ്സ്", "inLanguage": "ml", "url": BASE + path, "publisher": BUSINESS_REF},
+        crumbs_schema([("Home", "/"), ("ഹോം ടിപ്സ്", path)])]}
+    body = f"""{header(wa)}
+<main class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> &rsaquo; ഹോം ടിപ്സ്</nav>
+  <article class="post">
+    <h1>ഹോം ടിപ്സ്</h1>
+    <p>കേരളത്തിലെ വീടുകൾ നന്നായി സൂക്ഷിക്കാൻ ലളിതമായ ഉപദേശങ്ങൾ. <a href="/blog/" lang="en" style="color:var(--accent);font-weight:700;text-decoration:none">Read in English</a></p>
+    <div class="posts">{cards}</div>
+  </article>
+</main>"""
+    page = head(title, desc, path, "/images/fixmate-kerala-og.jpg", schema) + body + tail(wa)
+    return path, page.replace('<html lang="en">', '<html lang="ml">', 1)
 
 
 def pretty(d):
@@ -324,7 +394,7 @@ def blog_index():
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> &rsaquo; Home tips</nav>
   <article class="post">
     <h1>Home tips</h1>
-    <p>Simple, practical advice for looking after a Kerala home.</p>
+    <p>Simple, practical advice for looking after a Kerala home. <a href="/blog/ml/" lang="ml" style="color:var(--accent);font-weight:700;text-decoration:none">മലയാളത്തിൽ വായിക്കുക</a></p>
     <div class="posts">{cards}</div>
   </article>
 </main>"""
@@ -398,9 +468,13 @@ if __name__ == "__main__":
     for a in ARTICLES:
         pages.append(article_page(*a))
     pages.append(blog_index())
-    os.makedirs(f"{REPO}/blog", exist_ok=True)
+    for a in ARTICLES:
+        if a[0] in ARTICLES_ML:
+            pages.append(article_page_ml(a[0], a[3], a[4], a[6] if len(a) > 6 else "2026-11-10"))
+    pages.append(blog_index_ml())
+    os.makedirs(f"{REPO}/blog/ml", exist_ok=True)
     for path, content in pages:
-        fn = "blog/index.html" if path == "/blog/" else path.lstrip("/") + ".html"
+        fn = path.lstrip("/") + "index.html" if path.endswith("/") else path.lstrip("/") + ".html"
         open(f"{REPO}/{fn}", "w", encoding="utf-8").write(content)
     n = sum(add_malayalam(s[0]) for s in SERVICES)
     write_sitemap([p for p, _ in pages])
