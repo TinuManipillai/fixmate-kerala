@@ -297,7 +297,7 @@ def article_page(slug, title, desc, svc, image, content, date="2026-11-10"):
     <div class="meta">FixMate Kerala · {pretty(date)}</div>
     {content}
     <div class="band">
-      <div><h2>Need a hand with this?</h2><p>See {s[1].lower()} jobs and prices for North Paravur and nearby places.</p></div>
+      <div><h2>Need a hand with this?</h2><p>See {s[1]} jobs and prices for North Paravur and nearby places.</p></div>
       <div class="ctas" style="margin:0"><a class="cbtn book" href="/{svc}-north-paravur">See prices</a><a class="cbtn wa" href="{wa}" target="_blank" rel="noopener">{WA_SVG}WhatsApp</a></div>
     </div>
   </article>
