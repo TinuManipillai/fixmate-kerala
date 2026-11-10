@@ -487,6 +487,32 @@ def add_ga_everywhere():
     return n
 
 
+CLARITY_ID = "zb9w5kulw4"
+CLARITY_MARK = "<!-- ms-clarity -->"
+CLARITY_SNIPPET = CLARITY_MARK + f"""
+<script>
+(function(c,l,a,r,i,t,y){{c[a]=c[a]||function(){{(c[a].q=c[a].q||[]).push(arguments)}};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);}})(window,document,"clarity","script","{CLARITY_ID}");
+</script>"""
+
+
+def add_clarity_everywhere():
+    """Microsoft Clarity heatmaps and recordings on every public page (added 10 Nov 2026)."""
+    import glob
+    n = 0
+    for f in glob.glob(f"{REPO}/*.html") + glob.glob(f"{REPO}/blog/**/*.html", recursive=True):
+        if f.endswith("dashboard.html"):
+            continue
+        t = open(f, encoding="utf-8").read()
+        if CLARITY_MARK in t:
+            continue
+        t = t.replace("<head>", "<head>\n" + CLARITY_SNIPPET, 1)
+        open(f, "w", encoding="utf-8").write(t)
+        n += 1
+    return n
+
+
 if __name__ == "__main__":
     import os
     pages = []
@@ -507,5 +533,6 @@ if __name__ == "__main__":
     n = sum(add_malayalam(s[0]) for s in SERVICES)
     write_sitemap([p for p, _ in pages])
     print("GA added to", add_ga_everywhere(), "pages")
+    print("Clarity added to", add_clarity_everywhere(), "pages")
     print(len(pages), "pages written;", n, "service pages updated")
     print("\n".join(p for p, _ in pages))
