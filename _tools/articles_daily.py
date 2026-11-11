@@ -23,4 +23,23 @@ ARTICLES_DAILY = [
 <ul><li>The MCB or ELCB trips when the lights are on</li><li>You feel a tingle when touching a gate, grill or switch</li><li>A socket sparks, buzzes or shows burn marks</li><li>You need a new outdoor point for the yard or gate</li></ul>
 <p>FixMate Kerala offers electrician service in North Paravur and nearby places, including safe outdoor points and wiring checks before the festive season, with the price agreed before work starts.</p>
 """, "2026-11-10"),
+    ("mosquito-net-windows-doors-kerala", "Mosquito Nets for Windows and Doors: Keeping Mosquitoes Out After the Rains",
+     "How to choose and look after mosquito nets for windows and doors in Kerala homes, what to check after the monsoon, and simple ways to cut mosquito breeding around the house.",
+     "mosquito-net", "/images/mosquito-net-north-paravur.jpg", """
+<p>After the monsoon and the Thulavarsham showers, many Kerala homes see more mosquitoes in the evenings. Water collects in pots, gutters and the terrace, and mosquitoes come inside through open windows and doors. Coils and sprays help for a while, but good mosquito nets on windows and doors keep them out every day without smoke or smell.</p>
+<div class="tip"><b>Quick check:</b> on a bright day, stand inside and look at each window net against the light. Small holes, gaps at the corners and loose edges show up clearly. These are the places mosquitoes get in.</div>
+<h2>1. Types of mosquito nets for homes</h2>
+<ul><li><b>Fixed frame nets:</b> a net fitted in a frame on the window, good for windows you rarely close</li><li><b>Sliding nets:</b> move sideways on a track, useful for sliding windows and balcony doors</li><li><b>Pleated or roll up nets:</b> fold away when not needed, good for doors used often</li><li><b>Velcro nets:</b> simple and low cost, but the edges can loosen over time</li></ul>
+<p>The right type depends on how the window or door opens and how often you use it. A fitter can measure and suggest what suits each opening.</p>
+<h2>2. Common problems after the rains</h2>
+<ul><li>Torn or stretched mesh from pets, children or strong wind</li><li>Gaps between the frame and the wall</li><li>Sliding nets that stick because the track is full of dust</li><li>Velcro or magnets that no longer hold</li><li>Mould or dirt on the mesh, which also blocks air</li></ul>
+<h2>3. Simple care</h2>
+<ul><li>Dust the mesh with a soft brush every week or two</li><li>Wash removable nets with mild soap and water and let them dry fully</li><li>Clean sliding tracks so the net moves smoothly</li><li>Close the net every evening before lights are switched on</li><li>Repair small holes early before they grow</li></ul>
+<h2>4. Stop mosquitoes breeding around the house</h2>
+<p>Nets work best when there is less breeding nearby. Once a week, walk around the house and:</p>
+<ul><li>Empty water from flower pot trays, buckets, old tyres and coconut shells</li><li>Clear blocked roof gutters and terrace drains</li><li>Keep water tanks and barrels tightly covered</li><li>Change water in pet bowls and plant bottles often</li></ul>
+<h2>Safety note</h2>
+<p>When cleaning or checking nets on upper floor windows, do not lean out or stand on chairs or stools. Use a steady ladder with someone holding it, or ask for help. If anyone at home has fever with body pain after mosquito bites, see a doctor.</p>
+<p>FixMate Kerala offers mosquito net installation and repair for windows and doors in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-11"),
 ]
