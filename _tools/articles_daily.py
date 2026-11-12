@@ -42,4 +42,23 @@ ARTICLES_DAILY = [
 <p>When cleaning or checking nets on upper floor windows, do not lean out or stand on chairs or stools. Use a steady ladder with someone holding it, or ask for help. If anyone at home has fever with body pain after mosquito bites, see a doctor.</p>
 <p>FixMate Kerala offers mosquito net installation and repair for windows and doors in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-11"),
+    ("rusty-gate-grill-after-monsoon", "Rusty Gates and Window Grills After the Monsoon: What to Check and Fix",
+     "How to spot rust on gates, window grills and railings after the Kerala monsoon, simple cleaning and repainting steps, and when weak welds or broken parts need a welder.",
+     "welding-work", "/images/welding-work-north-paravur.jpg", """
+<p>Months of rain, humid air and salt in the breeze near the backwaters are hard on iron. After the monsoon, many Kerala homes find brown patches on the front gate, flaking paint on window grills and stiff hinges that squeak every time the gate opens. Dry weeks after the rains are a good time to deal with rust before it eats deeper into the metal.</p>
+<div class="tip"><b>Quick check:</b> press the rusty spot with a screwdriver tip. If it is only on the surface, cleaning and painting will do. If the metal is soft, flakes off in layers or the tip goes through, that part needs repair or replacement by a welder.</div>
+<h2>1. Where to look</h2>
+<ul><li>The bottom bar of the gate, where water and mud splash</li><li>Joints and welds on grills and railings</li><li>Hinges, latches and the gate track</li><li>Places where the grill meets the wall and water sits</li><li>Staircase and terrace railings that get full sun and rain</li></ul>
+<h2>2. Surface rust: clean and repaint</h2>
+<p>Wait for a few dry days, then:</p>
+<ul><li>Scrub off loose rust and old paint with a wire brush or sandpaper</li><li>Wipe away the dust with a dry cloth</li><li>Apply a coat of anti-rust primer and let it dry as the tin says</li><li>Finish with one or two coats of metal enamel paint</li></ul>
+<p>Paint the bottom bars and hidden corners too, because rust usually starts there.</p>
+<h2>3. Hinges and moving parts</h2>
+<p>Clean dirt from hinges, latches and sliding tracks, then add a few drops of oil or grease. A gate that drags on the ground or will not latch may have a sagging hinge or a bent frame, which oil will not fix.</p>
+<h2>4. Signs you need a welder</h2>
+<ul><li>A weld joint has cracked or a bar has come loose</li><li>The gate sags, drags or does not close properly</li><li>Rust has made holes in the frame or bottom bar</li><li>Grill bars are loose, which is a safety and security risk</li><li>A railing moves when you lean on it</li></ul>
+<h2>Safety note</h2>
+<p>Wear gloves and eye protection when wire brushing, because rust flakes fly. Paint in open air and keep children away until it dries. Do not lean on loose railings or climb on weak grills. If your gate has a motor or lights, switch off the power before working near them. Leave cutting, grinding and welding to a trained person.</p>
+<p>FixMate Kerala offers welding work for gates, grills and railings in North Paravur and nearby places, including repairs and rust treatment, with the price agreed before work starts.</p>
+""", "2026-11-12"),
 ]
