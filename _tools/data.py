@@ -17,6 +17,12 @@ SERVICES = [
     ("sofa-cleaning", "Sofa and Carpet Cleaning", "സോഫ, കാർപെറ്റ് ക്ലീനിംഗ്", "sofa", "Sofa, carpet and mattress cleaning"),
     ("home-deep-cleaning", "Home Deep Cleaning", "ഹോം ഡീപ് ക്ലീനിംഗ്", "cleaning", "Full house, kitchen and bathroom deep cleaning"),
     ("pest-control", "Pest Control", "പെസ്റ്റ് കൺട്രോൾ", "pest", "Cockroach, ant, termite and mosquito treatment"),
+    # added 12 Nov 2026
+    ("septic-tank-cleaning", "Septic Tank Cleaning", "സെപ്റ്റിക് ടാങ്ക് ക്ലീനിംഗ്", "septic", "Septic tank cleaning and clearing"),
+    ("car-wash", "Car Wash and Detailing", "കാർ വാഷ്, ഡീറ്റെയിലിംഗ്", "carwash", "Car wash at home, interior cleaning and detailing"),
+    ("solar-panel-installation", "Solar Panel Sales and Installation", "സോളാർ പാനൽ വിൽപനയും ഇൻസ്റ്റലേഷനും", "solar", "New solar systems, panel cleaning and service"),
+    ("coconut-tree-climber", "Coconut Tree Climber", "തെങ്ങുകയറ്റം (തേങ്ങ ഇടൽ)", "coconut", "Coconut plucking and tree top cleaning"),
+    ("land-cleaning", "Land Cleaning", "പറമ്പ് വൃത്തിയാക്കൽ (ലാൻഡ് ക്ലീനിംഗ്)", "land", "Grass cutting, weed removal and plot clearing"),
 ]
 
 # slug, english, malayalam
