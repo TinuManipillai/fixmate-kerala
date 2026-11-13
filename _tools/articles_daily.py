@@ -61,4 +61,22 @@ ARTICLES_DAILY = [
 <p>Wear gloves and eye protection when wire brushing, because rust flakes fly. Paint in open air and keep children away until it dries. Do not lean on loose railings or climb on weak grills. If your gate has a motor or lights, switch off the power before working near them. Leave cutting, grinding and welding to a trained person.</p>
 <p>FixMate Kerala offers welding work for gates, grills and railings in North Paravur and nearby places, including repairs and rust treatment, with the price agreed before work starts.</p>
 """, "2026-11-12"),
+    ("musty-sofa-mattress-after-monsoon", "Musty Smell or Mould on Your Sofa and Mattress After the Monsoon? What to Do",
+     "Why sofas, mattresses and carpets in Kerala homes smell musty or get mould spots after the rains, simple steps to dry and freshen them, and when deep cleaning is needed.",
+     "sofa-cleaning", "/images/sofa-cleaning-north-paravur.jpg", """
+<p>After months of rain and damp air, many Kerala homes notice a stale, musty smell from the sofa, mattress or carpet. Sometimes there are small grey, green or black spots on the fabric, especially on the underside or the side touching the wall. This is moisture and mould. The dry, sunny days after the monsoon are the best time to deal with it.</p>
+<div class="tip"><b>Quick tip:</b> pull your sofa and bed a few inches away from the walls. Air needs to move behind them, or the side touching a damp wall will stay wet and smell.</div>
+<h2>1. Why it happens</h2>
+<ul><li>Foam and fabric soak up moisture from humid air</li><li>Furniture kept against damp or cold walls</li><li>Rooms kept closed for days during the rain</li><li>Spilled water, sweat or wet clothes left on the sofa</li><li>Mattresses kept directly on the floor or on a solid base</li></ul>
+<h2>2. Dry it out first</h2>
+<p>Open windows on sunny days and run fans to move air through the room. Take cushion covers, mattress covers and small rugs out into the sun. Stand the mattress on its side for a few hours so both faces get air, and turn it over once in a while.</p>
+<h2>3. Freshen the fabric</h2>
+<ul><li>Vacuum the sofa, mattress and carpet slowly, including seams and corners</li><li>Sprinkle a little baking soda, leave it for a few hours, then vacuum it off</li><li>Wash removable covers as per their care label and dry them fully before putting them back</li><li>Clean small spills right away with a cloth that is just damp, not wet</li></ul>
+<p>Do not pour water or strong cleaning liquids on foam. It soaks in, takes days to dry and can make the smell worse.</p>
+<h2>4. When you need deep cleaning</h2>
+<ul><li>Mould spots keep coming back after cleaning</li><li>The smell stays even after drying in the sun</li><li>Large stains, or a pet or child has wet the sofa or mattress</li><li>Someone at home sneezes or coughs more when sitting or sleeping there</li><li>The carpet is too heavy to dry at home</li></ul>
+<h2>Safety note</h2>
+<p>Do not mix bleach with other cleaners, as this can give off harmful fumes. Wear a mask and gloves when brushing off mould, and do it near an open window or outside. People with asthma or allergies should stay away while mould is being cleaned. If a wall behind the furniture is wet or has damp patches, get the leak or seepage checked, or the problem will come back.</p>
+<p>FixMate Kerala offers sofa, mattress and carpet cleaning in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-13"),
 ]
