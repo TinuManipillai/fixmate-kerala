@@ -79,4 +79,21 @@ ARTICLES_DAILY = [
 <p>Do not mix bleach with other cleaners, as this can give off harmful fumes. Wear a mask and gloves when brushing off mould, and do it near an open window or outside. People with asthma or allergies should stay away while mould is being cleaned. If a wall behind the furniture is wet or has damp patches, get the leak or seepage checked, or the problem will come back.</p>
 <p>FixMate Kerala offers sofa, mattress and carpet cleaning in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-13"),
+    ("thunderstorm-safety-home-appliances", "Thunderstorms and Lightning: How to Protect Your Home and Appliances in Kerala",
+     "Simple steps to keep your family, TV, fridge, AC and water motor safe during Thulavarsham thunderstorms in Kerala, and signs your wiring or earthing needs an electrician.",
+     "electrician", "/images/electrician-north-paravur.jpg", """
+<p>October and November bring the Thulavarsham rains to Kerala, and with them come evening thunderstorms with heavy lightning. Many homes find a TV, router, inverter or water motor not working the morning after a storm. Lightning nearby can send a sudden surge through power lines, cable TV wires and phone lines. A few simple habits can protect your family and your appliances.</p>
+<div class="tip"><b>Quick tip:</b> when you hear thunder, unplug the TV, set top box, Wi-Fi router and computer from the wall socket. Switching off is good, but pulling the plug out gives better protection from a surge.</div>
+<h2>1. Before the storm season</h2>
+<ul><li>Get the earthing of your house checked, especially in older homes</li><li>Make sure the main board has a working MCB and an RCCB (ELCB)</li><li>Use a good surge protector or spike guard for TV and computer</li><li>Ask an electrician whether a surge protection device at the main board suits your house</li><li>Trim tree branches that touch the roof or the service wire</li></ul>
+<h2>2. During a thunderstorm</h2>
+<ul><li>Unplug costly electronics and remove the cable TV wire from the set top box</li><li>Switch off the water motor and do not start it until the storm passes</li><li>Avoid using wired phones, laptops on charge and electric iron</li><li>Stay away from the main board, metal grills, water taps and bathing</li><li>Do not stand on the terrace, under trees or in open ground</li></ul>
+<h2>3. After the storm</h2>
+<p>Plug things back in one by one. If an MCB or RCCB has tripped, switch it back on once. If it trips again straight away, leave it off and call an electrician. Check for a burning smell, black marks on switches or sockets, and lights that flicker or glow dim.</p>
+<h2>4. Signs you need an electrician</h2>
+<ul><li>Small shocks when touching taps, the fridge door or metal grills</li><li>Switches or sockets that feel warm or have burn marks</li><li>The same appliance gets damaged after every storm</li><li>Water motor hums but does not run after a storm</li><li>No earthing, or very old wiring in the house</li></ul>
+<h2>Safety note</h2>
+<p>Never touch fallen electric lines or wet wires. If a line falls in your compound, keep everyone away and inform KSEB at once. Do not open the main board or repair wiring yourself, especially when the walls or floor are wet. If you feel a shock from any metal part of the house, switch off the main and get it checked before using power again.</p>
+<p>FixMate Kerala offers electrician services in North Paravur and nearby places, including earthing checks, MCB and RCCB fitting and surge protection, with the price agreed before work starts.</p>
+""", "2026-11-14"),
 ]
