@@ -96,4 +96,21 @@ ARTICLES_DAILY = [
 <p>Never touch fallen electric lines or wet wires. If a line falls in your compound, keep everyone away and inform KSEB at once. Do not open the main board or repair wiring yourself, especially when the walls or floor are wet. If you feel a shock from any metal part of the house, switch off the main and get it checked before using power again.</p>
 <p>FixMate Kerala offers electrician services in North Paravur and nearby places, including earthing checks, MCB and RCCB fitting and surge protection, with the price agreed before work starts.</p>
 """, "2026-11-14"),
+    ("well-cleaning-after-monsoon-kerala", "Well Water Muddy or Smelly After the Rains? When and How to Get Your Well Cleaned",
+     "Why well water in Kerala turns muddy, yellow or smelly after the monsoon and Thulavarsham, what you can check safely, and when to get the well cleaned and the water tested.",
+     "water-tank-cleaning", "/images/water-tank-cleaning-north-paravur.jpg", """
+<p>Most homes around North Paravur and Aluva still depend on a well for daily water. After the monsoon and the Thulavarsham rains, many families notice the water looks muddy, turns yellow, has a bad smell or leaves an oily layer. Rain water carries soil, leaves and dirt from the compound into the well, and the water level rises close to the top. Once the heavy rains are over, it is a good time to look at your well and plan a cleaning before the summer.</p>
+<div class="tip"><b>Quick tip:</b> until the water looks and smells normal again, use boiled and cooled water for drinking and cooking, even if you have a water filter.</div>
+<h2>1. Common signs of a well that needs attention</h2>
+<ul><li>Water stays muddy or brown many days after the rain stops</li><li>Yellow or reddish water, or stains on buckets and tiles</li><li>A rotten egg, drain or musty smell</li><li>Leaves, insects, frogs or a dead animal seen in the well</li><li>Green growth on the inner walls or a slimy feel to the water</li></ul>
+<h2>2. Why it happens</h2>
+<ul><li>Rain water flowing in over a low or broken parapet wall</li><li>No net or cover on top of the well</li><li>Cracks in the well ring or wall letting in dirty surface water</li><li>A septic tank, drain or cattle shed too close to the well</li><li>Mud and leaves settling at the bottom over the years</li></ul>
+<h2>3. What you can do from the top</h2>
+<ul><li>Fit a net or cover so leaves and animals cannot fall in</li><li>Clean the area around the well and keep waste water flowing away from it</li><li>Repair the parapet wall so rain water cannot enter directly</li><li>Get the water tested at a lab or through your local health centre if you are unsure</li><li>For chlorination with bleaching powder, follow the health department guidance on the correct amount</li></ul>
+<h2>4. When to get the well cleaned</h2>
+<p>A full cleaning means pumping out the water, removing mud and leaves from the bottom, scrubbing the walls and then disinfecting. Many families do this once a year, usually after the rains and before summer when the water level goes down. Clean the overhead tank at the same time, or the old dirty water from the tank will mix with the clean well water.</p>
+<h2>Safety note</h2>
+<p>Never get down into a well yourself, and do not let anyone enter it without proper safety arrangements. The air at the bottom of a well can have very little oxygen or harmful gases, and people have lost their lives this way. Never lower a petrol or diesel pump into the well to empty it, as the exhaust can make the air deadly. Keep children away from an open well and always put the cover back.</p>
+<p>FixMate Kerala offers well and water tank cleaning in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-15"),
 ]
