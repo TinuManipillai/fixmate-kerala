@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- FixMate dashboard rev 2: added shared Tasks tab (rev 1 bookings only) -->
+<!-- FixMate dashboard rev 3: added private Partners tab, Tinu only (rev 2 shared Tasks tab, rev 1 bookings only) -->
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>FixMate Dashboard</title>
@@ -71,6 +71,20 @@ ul{margin:8px 0;padding-left:18px;font-size:14px}
 .del.arm{color:#d93025;font-weight:700}
 .opts{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);margin-bottom:12px}
 .opts input{width:auto}
+
+/* Partners (Tinu only) */
+.scroll{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:16px}
+table.cmp{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
+.cmp th,.cmp td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}
+.cmp th{font-size:11px;text-transform:uppercase;letter-spacing:.03em;color:var(--mute);background:var(--bg)}
+.cmp td.n{text-align:right;font-variant-numeric:tabular-nums}
+.cmp tr.best td{background:#f0fbf3}
+.yes{color:var(--ok);font-weight:700}.no{color:var(--mute)}
+.note{font-size:13px;color:var(--mute);margin:0 0 14px}
+.pcard h3{margin:0;font-size:16px}
+.pcard .grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.earn{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13px;margin-top:10px}
+.earn b{color:var(--ok)}
 </style></head><body>
 <div id="loginView" class="login" style="display:none">
   <h2>FixMate dashboard</h2>
@@ -79,7 +93,7 @@ ul{margin:8px 0;padding-left:18px;font-size:14px}
 </div>
 <div id="appView" style="display:none">
 <header><div class="brand">FixMate <span>Dashboard</span><span class="who" id="who"></span></div><div class="head-r"><button class="btn ghost" onclick="loadAll()">Refresh</button> <button class="btn ghost" onclick="logout()">Log out</button></div></header>
-<nav class="tabs"><button class="tab on" id="tabB" onclick="tab('b')">Bookings</button><button class="tab" id="tabT" onclick="tab('t')">Tasks<em id="todayCount" hidden></em></button></nav>
+<nav class="tabs"><button class="tab on" id="tabB" onclick="tab('b')">Bookings</button><button class="tab" id="tabT" onclick="tab('t')">Tasks<em id="todayCount" hidden></em></button><button class="tab" id="tabP" onclick="tab('p')" hidden>Partners</button></nav>
 <div class="wrap" id="bookView">
   <div class="stats" id="stats"></div>
   <div class="filters" id="filters"></div>
@@ -101,6 +115,15 @@ ul{margin:8px 0;padding-left:18px;font-size:14px}
   <label class="opts"><input type="checkbox" id="hideDone" onchange="renderTasks()"> Hide done tasks</label>
   <div id="tList"></div>
 </div>
+<div class="wrap" id="partView" hidden>
+  <p class="note">Private to you. Cleaning teams for FixMate, best deep clean rate first. Edit any card below and it saves on its own.</p>
+  <div class="scroll"><table class="cmp"><thead><tr><th>Company</th><th>Rating</th><th>Reviews</th><th>Deep clean (Rs/sq ft)</th><th>Sofa (Rs/seat)</th><th>Mattress (Rs)</th><th>Water tank (Rs/litre)</th><th>Commission (%)</th><th>FixMate earns (Rs/sq ft)</th><th>Team</th><th>FixMate informed</th></tr></thead><tbody id="pTable"></tbody></table></div>
+  <div class="addbox"><b>Add a company</b>
+    <div class="addrow"><input id="pName" type="text" placeholder="Company name" maxlength="120"><input id="pPhone" type="text" placeholder="Phone"><input id="pRate" type="number" step="0.1" placeholder="Rs per sq ft"><button class="btn" onclick="addPartner()">Add</button></div>
+    <div class="err" id="pErr"></div>
+  </div>
+  <div id="pList"></div>
+</div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
@@ -113,12 +136,12 @@ let rows=[],filter='All',tasks=[],tFilter='all',me='',armed=null;
 const $=id=>document.getElementById(id);
 const rs=n=>'Rs '+Math.round(Number(n)||0).toLocaleString('en-IN');
 async function init(){const {data}=await sb.auth.getSession();show(!!data.session);if(data.session){setMe(data.session);loadAll();}}
-function setMe(sess){const em=(sess&&sess.user&&sess.user.email||'').toLowerCase();me=PEOPLE[em]||em;$('who').textContent='Logged in as '+me;}
+function setMe(sess){const em=(sess&&sess.user&&sess.user.email||'').toLowerCase();me=PEOPLE[em]||em;$('who').textContent='Logged in as '+me;$('tabP').hidden=me!=='Tinu';}
 function show(a){$('loginView').style.display=a?'none':'block';$('appView').style.display=a?'block':'none';}
 async function login(){$('lerr').textContent='';const {data,error}=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});if(error){$('lerr').textContent=error.message;return;}show(true);setMe(data.session);loadAll();}
-async function logout(){await sb.auth.signOut();tasks=[];rows=[];show(false);}
-function loadAll(){load();loadTasks();}
-function tab(t){$('bookView').hidden=t!=='b';$('taskView').hidden=t!=='t';$('tabB').classList.toggle('on',t==='b');$('tabT').classList.toggle('on',t==='t');window.scrollTo(0,0);}
+async function logout(){await sb.auth.signOut();tasks=[];rows=[];partners=[];$('pList').innerHTML='';$('pTable').innerHTML='';tab('b');show(false);}
+function loadAll(){load();loadTasks();if(me==='Tinu')loadPartners();}
+function tab(t){if(t==='p'&&me!=='Tinu')t='b';$('bookView').hidden=t!=='b';$('taskView').hidden=t!=='t';$('partView').hidden=t!=='p';$('tabB').classList.toggle('on',t==='b');$('tabT').classList.toggle('on',t==='t');$('tabP').classList.toggle('on',t==='p');window.scrollTo(0,0);}
 
 /* ---------- Bookings (unchanged from rev 1) ---------- */
 async function load(){const {data,error}=await sb.from('bookings').select('*').order('created_at',{ascending:false});if(error){alert(error.message);return;}rows=data;render();}
@@ -224,6 +247,65 @@ async function delTask(id){
   if(error){alert('Could not delete: '+error.message);return;}
   tasks=tasks.filter(t=>t.id!==id);renderTasks();
 }
+/* ---------- Partners (Tinu only; protected by Supabase row level security) ---------- */
+let partners=[];
+const PNUM=['rating','reviews','deep_rate','tank_rate','commission_pct','team_size'];
+const num=v=>v==null||v===''?null:Number(v);
+const show2=v=>v==null||v===''?'-':esc(v);
+function earn(p){return p.deep_rate!=null&&p.commission_pct!=null?Number(p.deep_rate)*Number(p.commission_pct)/100:null;}
+async function loadPartners(){
+  const {data,error}=await sb.from('partners').select('*').order('sort_order',{ascending:true}).order('id',{ascending:true});
+  if(error){$('pList').innerHTML='<div class="empty">Could not load partners: '+esc(error.message)+'</div>';return;}
+  partners=data||[];renderPartners();
+}
+function renderPartners(){
+  const sorted=[...partners].sort((a,b)=>(a.deep_rate==null?999:a.deep_rate)-(b.deep_rate==null?999:b.deep_rate)||(b.reviews||0)-(a.reviews||0));
+  const best=Math.min(...partners.filter(p=>p.deep_rate!=null).map(p=>Number(p.deep_rate)));
+  $('pTable').innerHTML=sorted.map(p=>{const e=earn(p);return `<tr class="${p.deep_rate!=null&&Number(p.deep_rate)===best?'best':''}"><td><b>${esc(p.company)}</b>${p.contact?' <span class="mute">('+esc(p.contact)+')</span>':''}</td><td class="n">${show2(p.rating)}</td><td class="n">${show2(p.reviews)}</td><td class="n">${show2(p.deep_rate)}</td><td class="n">${show2(p.sofa_rate)}</td><td class="n">${show2(p.mattress_rate)}</td><td class="n">${show2(p.tank_rate)}</td><td class="n">${show2(p.commission_pct)}</td><td class="n">${e==null?'-':e.toFixed(2)}</td><td class="n">${show2(p.team_size)}</td><td class="${p.informed?'yes':'no'}">${p.informed?'Yes':'No'}</td></tr>`;}).join('')||'<tr><td colspan="11" class="empty">No companies yet</td></tr>';
+  $('pList').innerHTML=sorted.map(pCard).join('');
+}
+function pField(p,f,label,type){return `<div><label>${label}</label><input type="${type||'number'}" ${type?'':'step="any"'} value="${p[f]==null?'':esc(p[f])}" onchange="updP(${p.id},'${f}',this.value)"></div>`;}
+function pCard(p){
+  const ph=String(p.phone||'').replace(/\D/g,''),full=ph.length===10?'91'+ph:ph,e=earn(p);
+  const upd=p.updated_at?new Date(p.updated_at).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'}):'';
+  return `<div class="card pcard"><div class="top"><div><h3>${esc(p.company)}${p.contact?' &middot; '+esc(p.contact):''}</h3><div class="mute">${esc(p.phone)}${upd?' | Updated '+upd:''}</div></div><span class="badge ${p.informed?'s6':''}">${p.informed?'FixMate informed':'Not informed'}</span></div>
+  ${full?`<div class="links" style="margin-top:8px"><a href="tel:+${full}">Call</a><a href="https://wa.me/${full}" target="_blank">WhatsApp</a></div>`:''}
+  <div class="grid">
+   ${pField(p,'company','Company','text')}${pField(p,'contact','Contact','text')}${pField(p,'phone','Phone','text')}
+   ${pField(p,'rating','Google rating')}${pField(p,'reviews','Reviews')}${pField(p,'deep_rate','Deep clean (Rs/sq ft)')}
+   ${pField(p,'sofa_rate','Sofa (Rs/seat)','text')}${pField(p,'mattress_rate','Mattress (Rs)','text')}${pField(p,'tank_rate','Water tank (Rs/litre)')}
+   ${pField(p,'commission_pct','Commission (%)')}${pField(p,'team_size','Team size')}
+   <div><label>FixMate informed</label><select onchange="updP(${p.id},'informed',this.value==='Yes')"><option ${p.informed?'selected':''}>Yes</option><option ${p.informed?'':'selected'}>No</option></select></div>
+   <div style="grid-column:1/-1"><label>Latest update</label><textarea rows="2" onchange="updP(${p.id},'latest',this.value)">${esc(p.latest)}</textarea></div>
+  </div>
+  ${e!=null?`<div class="earn">At ${esc(p.commission_pct)}% commission, FixMate earns <b>Rs ${e.toFixed(2)} per sq ft</b>, which is <b>${rs(e*1500)}</b> on a 1,500 sq ft house.</div>`:''}
+  <div style="margin-top:8px"><button class="del ${armed==='p'+p.id?'arm':''}" onclick="delPartner(${p.id})">${armed==='p'+p.id?'Delete this company?':'Delete company'}</button><span class="saved" id="ps${p.id}"></span></div></div>`;
+}
+async function updP(id,f,v){
+  const val=PNUM.includes(f)?num(v):(typeof v==='string'&&v.trim()===''&&f!=='company'?null:v);
+  const patch={[f]:val,updated_at:new Date().toISOString()};
+  const {error}=await sb.from('partners').update(patch).eq('id',id);
+  if(error){alert('Could not save: '+error.message);return;}
+  Object.assign(partners.find(x=>x.id===id),patch);renderPartners();
+  const el=$('ps'+id);if(el){el.textContent='Saved';setTimeout(()=>{if($('ps'+id))$('ps'+id).textContent='';},1500);}
+}
+async function addPartner(){
+  $('pErr').textContent='';
+  const company=$('pName').value.trim();if(!company){$('pErr').textContent='Type the company name first.';return;}
+  const row={company,phone:$('pPhone').value.trim()||null,deep_rate:num($('pRate').value),sort_order:1000};
+  const {data,error}=await sb.from('partners').insert(row).select();
+  if(error){$('pErr').textContent='Could not add: '+error.message;return;}
+  partners.push(...(data||[]));$('pName').value='';$('pPhone').value='';$('pRate').value='';renderPartners();
+}
+async function delPartner(id){
+  const k='p'+id;
+  if(armed!==k){armed=k;renderPartners();setTimeout(()=>{if(armed===k){armed=null;renderPartners();}},3000);return;}
+  armed=null;
+  const {error}=await sb.from('partners').delete().eq('id',id);
+  if(error){alert('Could not delete: '+error.message);return;}
+  partners=partners.filter(p=>p.id!==id);renderPartners();
+}
+
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&document.activeElement===$('tTitle'))addTask();});
 init();
 </script></body></html>
