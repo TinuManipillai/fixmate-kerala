@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- FixMate dashboard rev 3: added private Partners tab, Tinu only (rev 2 shared Tasks tab, rev 1 bookings only) -->
+<!-- FixMate dashboard rev 4: partner services, priority (1st, 2nd...) and Forward to partner on bookings (rev 3 private Partners tab, rev 2 shared Tasks tab, rev 1 bookings only) -->
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>FixMate Dashboard</title>
@@ -85,6 +85,14 @@ table.cmp{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
 .pcard .grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
 .earn{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13px;margin-top:10px}
 .earn b{color:var(--ok)}
+.svcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.svcs .chip{font-size:12px;padding:4px 10px}
+.prio{font-weight:700;color:var(--accent)}
+.fwd{background:var(--bg);border-radius:10px;padding:10px 12px;margin-top:10px;font-size:13px}
+.fwd-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.fwd-row select{width:auto;min-width:200px;flex:1}
+.fwd-row .btn{padding:8px 14px;font-size:13px}
+.fwd-done{color:var(--ok);font-weight:700;margin-top:6px}
 </style></head><body>
 <div id="loginView" class="login" style="display:none">
   <h2>FixMate dashboard</h2>
@@ -116,8 +124,9 @@ table.cmp{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
   <div id="tList"></div>
 </div>
 <div class="wrap" id="partView" hidden>
-  <p class="note">Private to you. Cleaning teams for FixMate, best deep clean rate first. Edit any card below and it saves on its own.</p>
-  <div class="scroll"><table class="cmp"><thead><tr><th>Company</th><th>Rating</th><th>Reviews</th><th>Deep clean (Rs/sq ft)</th><th>Sofa (Rs/seat)</th><th>Mattress (Rs)</th><th>Water tank (Rs/litre)</th><th>Commission (%)</th><th>FixMate earns (Rs/sq ft)</th><th>Team</th><th>FixMate informed</th></tr></thead><tbody id="pTable"></tbody></table></div>
+  <p class="note">Private to you. Partner teams for FixMate, sorted by priority (1st, 2nd...) then rate. Forward to partner on a booking sends the job to the 1st partner for that service. Edit any card below and it saves on its own.</p>
+  <div class="filters" id="pFilters"></div>
+  <div class="scroll"><table class="cmp"><thead><tr><th>Company</th><th>Priority</th><th>Services</th><th>Rating</th><th>Reviews</th><th>Deep clean (Rs/sq ft)</th><th>Sofa (Rs/seat)</th><th>Mattress (Rs)</th><th>Water tank (Rs/litre)</th><th>Commission (%)</th><th>FixMate earns (Rs/sq ft)</th><th>Team</th><th>FixMate informed</th></tr></thead><tbody id="pTable"></tbody></table></div>
   <div class="addbox"><b>Add a company</b>
     <div class="addrow"><input id="pName" type="text" placeholder="Company name" maxlength="120"><input id="pPhone" type="text" placeholder="Phone"><input id="pRate" type="number" step="0.1" placeholder="Rs per sq ft"><button class="btn" onclick="addPartner()">Add</button></div>
     <div class="err" id="pErr"></div>
@@ -175,7 +184,30 @@ function card(r){
    <div><label>Paid to Sanal (Rs)</label><input type="number" value="${r.sanal_payout!=null?r.sanal_payout:''}" onchange="upd(${r.id},'sanal_payout',this.value)"></div>
    <div><label>Our profit</label><div class="profit">${p==null?'-':rs(p)}</div></div>
    <div style="grid-column:1/-1"><label>Internal notes</label><textarea rows="2" onchange="upd(${r.id},'notes',this.value)">${esc(r.notes)}</textarea></div>
-  </div><span class="saved" id="sv${r.id}"></span></div>`;
+  </div>${me==='Tinu'?fwdBox(r):''}<span class="saved" id="sv${r.id}"></span></div>`;
+}
+
+/* ---------- Forward to partner (Tinu only) ---------- */
+function fwdBox(r){
+  const svcs=[...new Set((r.items||[]).map(i=>i.catId).filter(Boolean))];
+  if(!svcs.length)return '';
+  const done=r.partner_name?`<div class="fwd-done">Forwarded to ${esc(r.partner_name)} (${esc(svcName(r.partner_service))}) on ${new Date(r.partner_forwarded_at).toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})}</div>`:'';
+  const rowsH=svcs.map(s=>{const c=partnersFor(s);
+    if(!c.length)return `<div class="fwd-row"><span class="mute">${esc(svcName(s))}: no partner added for this service yet</span></div>`;
+    return `<div class="fwd-row"><b>${esc(svcName(s))}</b><select id="fw${r.id}_${s}">${c.map(p=>`<option value="${p.id}">${ord(p.priority)} : ${esc(p.company)}</option>`).join('')}</select><button class="btn" onclick="fwd(${r.id},'${s}')">Forward to partner</button></div>`;}).join('');
+  return `<div class="fwd"><b>Forward to partner</b> <span class="mute">(sends job details only, no customer name, phone or address)</span>${rowsH}${done}</div>`;
+}
+async function fwd(id,svc){
+  const r=rows.find(x=>x.id===id),sel=$('fw'+id+'_'+svc),p=partners.find(x=>x.id===Number(sel&&sel.value));
+  if(!r||!p)return;
+  const ph=String(p.phone||'').replace(/\D/g,'');if(!ph){alert('Add a phone number for '+p.company+' in the Partners tab first.');return;}
+  const work=(r.items||[]).filter(i=>i.catId===svc&&!i.isConsult).map(i=>'- '+i.name+(i.hours?' ('+i.hours+'h)':i.note?' ('+i.note+')':'')).join('\n');
+  const text=['New job from FixMate Kerala','','Job no: '+(r.order_no||('#'+r.id)),'Service: '+svcName(svc),'Work:',work,'Area: '+[r.area,r.pincode].filter(Boolean).join(' '),'Preferred: '+[r.preferred_date,r.preferred_time].filter(Boolean).join(' ')].concat(r.details?['Notes: '+r.details]:[]).concat(['','Please confirm if you can take this job. Customer contact details will be shared once confirmed.']).join('\n');
+  window.open('https://wa.me/'+(ph.length===10?'91'+ph:ph)+'?text='+encodeURIComponent(text),'_blank');
+  const patch={partner_name:p.company,partner_service:svc,partner_forwarded_at:new Date().toISOString()};
+  const {error}=await sb.from('bookings').update(patch).eq('id',id);
+  if(error){alert('WhatsApp opened, but could not save the forward: '+error.message);return;}
+  Object.assign(r,patch);render();
 }
 async function upd(id,f,v){
   const val=(f==='total_payment'||f==='sanal_payout')?(v===''?null:Number(v)):v;
@@ -248,21 +280,36 @@ async function delTask(id){
   tasks=tasks.filter(t=>t.id!==id);renderTasks();
 }
 /* ---------- Partners (Tinu only; protected by Supabase row level security) ---------- */
-let partners=[];
-const PNUM=['rating','reviews','deep_rate','tank_rate','commission_pct','team_size'];
+let partners=[],pSvc='all';
+const PNUM=['rating','reviews','deep_rate','tank_rate','commission_pct','team_size','priority'];
+// same ids as the categories on the booking site (index.html)
+const SERVICES={cleaning:'Home deep cleaning',sofa:'Sofa and carpet cleaning',interlock:'Tank cleaning',septic:'Septic tank cleaning',pest:'Pest control',electrical:'Electrical',plumbing:'Plumbing',carpentry:'Carpentry',tile:'Tile work',painting:'Painting',welding:'Welding',gypsum:'Gypsum work',masonry:'Masonry',appliance:'Appliance repair',handyman:'General handyman',cctv:'CCTV',furniture:'Furniture assembly',mosquito:'Mosquito net',carwash:'Car wash and detailing',solar:'Solar panel',coconut:'Coconut tree climber',land:'Land cleaning'};
+const svcName=k=>SERVICES[k]||k;
+const ord=n=>n==null?'-':n===1?'1st':n===2?'2nd':n===3?'3rd':n+'th';
+const prioSort=(a,b)=>(a.priority==null?99:a.priority)-(b.priority==null?99:b.priority)||(a.deep_rate==null?999:a.deep_rate)-(b.deep_rate==null?999:b.deep_rate)||(b.reviews||0)-(a.reviews||0);
+function partnersFor(svc){return partners.filter(p=>(p.services||[]).includes(svc)).sort(prioSort);}
 const num=v=>v==null||v===''?null:Number(v);
 const show2=v=>v==null||v===''?'-':esc(v);
 function earn(p){return p.deep_rate!=null&&p.commission_pct!=null?Number(p.deep_rate)*Number(p.commission_pct)/100:null;}
 async function loadPartners(){
   const {data,error}=await sb.from('partners').select('*').order('sort_order',{ascending:true}).order('id',{ascending:true});
   if(error){$('pList').innerHTML='<div class="empty">Could not load partners: '+esc(error.message)+'</div>';return;}
-  partners=data||[];renderPartners();
+  partners=data||[];renderPartners();if(rows.length)render();
 }
+function setPS(k){pSvc=k;renderPartners();}
 function renderPartners(){
-  const sorted=[...partners].sort((a,b)=>(a.deep_rate==null?999:a.deep_rate)-(b.deep_rate==null?999:b.deep_rate)||(b.reviews||0)-(a.reviews||0));
-  const best=Math.min(...partners.filter(p=>p.deep_rate!=null).map(p=>Number(p.deep_rate)));
-  $('pTable').innerHTML=sorted.map(p=>{const e=earn(p);return `<tr class="${p.deep_rate!=null&&Number(p.deep_rate)===best?'best':''}"><td><b>${esc(p.company)}</b>${p.contact?' <span class="mute">('+esc(p.contact)+')</span>':''}</td><td class="n">${show2(p.rating)}</td><td class="n">${show2(p.reviews)}</td><td class="n">${show2(p.deep_rate)}</td><td class="n">${show2(p.sofa_rate)}</td><td class="n">${show2(p.mattress_rate)}</td><td class="n">${show2(p.tank_rate)}</td><td class="n">${show2(p.commission_pct)}</td><td class="n">${e==null?'-':e.toFixed(2)}</td><td class="n">${show2(p.team_size)}</td><td class="${p.informed?'yes':'no'}">${p.informed?'Yes':'No'}</td></tr>`;}).join('')||'<tr><td colspan="11" class="empty">No companies yet</td></tr>';
+  const used=[...new Set(partners.flatMap(p=>p.services||[]))].sort((a,b)=>Object.keys(SERVICES).indexOf(a)-Object.keys(SERVICES).indexOf(b));
+  $('pFilters').innerHTML=[['all','All services'],...used.map(k=>[k,svcName(k)])].map(([k,l])=>`<button class="chip ${k===pSvc?'on':''}" onclick="setPS('${k}')">${esc(l)}</button>`).join('');
+  const sorted=partners.filter(p=>pSvc==='all'||(p.services||[]).includes(pSvc)).sort(prioSort);
+  const best=Math.min(...sorted.filter(p=>p.deep_rate!=null).map(p=>Number(p.deep_rate)));
+  $('pTable').innerHTML=sorted.map(p=>{const e=earn(p);return `<tr class="${p.deep_rate!=null&&Number(p.deep_rate)===best?'best':''}"><td><b>${esc(p.company)}</b>${p.contact?' <span class="mute">('+esc(p.contact)+')</span>':''}</td><td class="prio">${ord(p.priority)}</td><td>${(p.services||[]).map(svcName).map(esc).join(', ')}</td><td class="n">${show2(p.rating)}</td><td class="n">${show2(p.reviews)}</td><td class="n">${show2(p.deep_rate)}</td><td class="n">${show2(p.sofa_rate)}</td><td class="n">${show2(p.mattress_rate)}</td><td class="n">${show2(p.tank_rate)}</td><td class="n">${show2(p.commission_pct)}</td><td class="n">${e==null?'-':e.toFixed(2)}</td><td class="n">${show2(p.team_size)}</td><td class="${p.informed?'yes':'no'}">${p.informed?'Yes':'No'}</td></tr>`;}).join('')||'<tr><td colspan="11" class="empty">No companies yet</td></tr>';
   $('pList').innerHTML=sorted.map(pCard).join('');
+}
+async function toggleSvc(id,k){
+  const p=partners.find(x=>x.id===id);if(!p)return;
+  const cur=p.services||[];const next=cur.includes(k)?cur.filter(x=>x!==k):[...cur,k];
+  if(!next.length){alert('A partner needs at least one service.');return;}
+  updP(id,'services',next);
 }
 function pField(p,f,label,type){return `<div><label>${label}</label><input type="${type||'number'}" ${type?'':'step="any"'} value="${p[f]==null?'':esc(p[f])}" onchange="updP(${p.id},'${f}',this.value)"></div>`;}
 function pCard(p){
@@ -276,6 +323,8 @@ function pCard(p){
    ${pField(p,'sofa_rate','Sofa (Rs/seat)','text')}${pField(p,'mattress_rate','Mattress (Rs)','text')}${pField(p,'tank_rate','Water tank (Rs/litre)')}
    ${pField(p,'commission_pct','Commission (%)')}${pField(p,'team_size','Team size')}
    <div><label>FixMate informed</label><select onchange="updP(${p.id},'informed',this.value==='Yes')"><option ${p.informed?'selected':''}>Yes</option><option ${p.informed?'':'selected'}>No</option></select></div>
+   <div><label>Priority</label><select onchange="updP(${p.id},'priority',this.value)"><option value="" ${p.priority==null?'selected':''}>Not set</option>${[1,2,3,4,5].map(n=>`<option value="${n}" ${p.priority===n?'selected':''}>${ord(n)}</option>`).join('')}</select></div>
+   <div style="grid-column:1/-1"><label>Services (tap to add or remove)</label><div class="svcs">${Object.keys(SERVICES).map(k=>`<button class="chip ${(p.services||[]).includes(k)?'on':''}" onclick="toggleSvc(${p.id},'${k}')">${esc(SERVICES[k])}</button>`).join('')}</div></div>
    <div style="grid-column:1/-1"><label>Latest update</label><textarea rows="2" onchange="updP(${p.id},'latest',this.value)">${esc(p.latest)}</textarea></div>
   </div>
   ${e!=null?`<div class="earn">At ${esc(p.commission_pct)}% commission, FixMate earns <b>Rs ${e.toFixed(2)} per sq ft</b>, which is <b>${rs(e*1500)}</b> on a 1,500 sq ft house.</div>`:''}
