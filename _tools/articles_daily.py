@@ -113,4 +113,21 @@ ARTICLES_DAILY = [
 <p>Never get down into a well yourself, and do not let anyone enter it without proper safety arrangements. The air at the bottom of a well can have very little oxygen or harmful gases, and people have lost their lives this way. Never lower a petrol or diesel pump into the well to empty it, as the exhaust can make the air deadly. Keep children away from an open well and always put the cover back.</p>
 <p>FixMate Kerala offers well and water tank cleaning in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-15"),
+    ("rats-in-roof-false-ceiling-kerala", "Rats in the Roof or False Ceiling? Signs, Safe Cleaning and Prevention",
+     "How to tell if rats are living in your roof, attic or false ceiling after the Kerala rains, how to clean droppings safely, how to block entry points, and when to call pest control.",
+     "pest-control", "/images/pest-control-north-paravur.jpg", """
+<p>As the rains slow down in November, many homes around North Paravur and Aluva start hearing scratching and running sounds above the ceiling at night. Rats and bandicoots look for dry, warm places, and the gap between a tiled roof and the false ceiling, the attic, or the space behind kitchen cupboards suits them well. Rats damage wires, pipes and stored food, and their urine and droppings can spread disease, including rat fever (leptospirosis). It is better to act early.</p>
+<div class="tip"><b>Quick tip:</b> never sweep or dust rat droppings while they are dry. Spray them with a disinfectant or a mild bleach and water mix first, wait a few minutes, then wipe up with paper while wearing gloves.</div>
+<h2>1. Signs that rats are living in your home</h2>
+<ul><li>Scratching, running or squeaking sounds from the ceiling at night</li><li>Small dark droppings near the kitchen, store room or on top of cupboards</li><li>Chewed wires, soap, fruit or food packets</li><li>Grease marks along walls and beams where they run</li><li>Stains or a bad smell on the false ceiling boards</li></ul>
+<h2>2. How rats get in</h2>
+<ul><li>Gaps under the roof tiles and along the edges of the roof</li><li>Openings around pipes, AC lines and drain outlets</li><li>Broken mesh on ventilators and kitchen exhaust holes</li><li>Coconut and other tree branches touching the roof</li><li>Doors with a big gap at the bottom</li></ul>
+<h2>3. What you can do yourself</h2>
+<ul><li>Keep food, grains and pet food in closed containers</li><li>Take the kitchen waste out every night and keep the bin closed</li><li>Cut back branches that touch the roof or walls</li><li>Fix wire mesh on ventilators and drain openings</li><li>Seal small gaps around pipes and keep the store room tidy so rats cannot hide</li></ul>
+<h2>4. When to call pest control</h2>
+<p>If you still hear rats after a week or two, see droppings in many rooms, or find chewed electrical wires, it is time to get help. A pest control team can find the entry points, set traps or bait stations in the right places, and suggest which gaps need to be closed. Chewed wires should also be checked by an electrician, as they can cause a short circuit.</p>
+<h2>Safety note</h2>
+<p>Rat poison can harm children, pets and hens, so keep it locked away and use it only in covered bait boxes, or leave it to trained staff. Always wear gloves when handling dead rats, traps or droppings, and wash your hands well afterwards. Do not walk barefoot in water or wet places where rats move. If anyone at home gets a fever with body pain after cleaning up after rats, see a doctor and mention it.</p>
+<p>FixMate Kerala offers pest control, including rat control, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-16"),
 ]
