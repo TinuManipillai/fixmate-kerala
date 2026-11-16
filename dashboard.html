@@ -1,5 +1,5 @@
 <!doctype html>
-<!-- FixMate dashboard rev 4: partner services, priority (1st, 2nd...) and Forward to partner on bookings (rev 3 private Partners tab, rev 2 shared Tasks tab, rev 1 bookings only) -->
+<!-- FixMate dashboard rev 5: service dropdown on Partners tab filters the comparison table (rev 4 partner services, priority and Forward to partner; rev 3 private Partners tab, rev 2 shared Tasks tab, rev 1 bookings only) -->
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>FixMate Dashboard</title>
@@ -85,6 +85,8 @@ table.cmp{border-collapse:collapse;width:100%;font-size:13px;min-width:760px}
 .pcard .grid{grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
 .earn{background:var(--bg);border-radius:10px;padding:10px 12px;font-size:13px;margin-top:10px}
 .earn b{color:var(--ok)}
+.svc-pick{display:flex;align-items:center;gap:10px;font-weight:700;font-size:14px;width:100%;max-width:420px}
+.svc-pick select{flex:1;font-weight:500}
 .svcs{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
 .svcs .chip{font-size:12px;padding:4px 10px}
 .prio{font-weight:700;color:var(--accent)}
@@ -299,10 +301,11 @@ async function loadPartners(){
 function setPS(k){pSvc=k;renderPartners();}
 function renderPartners(){
   const used=[...new Set(partners.flatMap(p=>p.services||[]))].sort((a,b)=>Object.keys(SERVICES).indexOf(a)-Object.keys(SERVICES).indexOf(b));
-  $('pFilters').innerHTML=[['all','All services'],...used.map(k=>[k,svcName(k)])].map(([k,l])=>`<button class="chip ${k===pSvc?'on':''}" onclick="setPS('${k}')">${esc(l)}</button>`).join('');
+  const opts=[['all','All services'],...Object.keys(SERVICES).map(k=>[k,svcName(k)+(used.includes(k)?' ('+partners.filter(p=>(p.services||[]).includes(k)).length+')':' (none yet)')])];
+  $('pFilters').innerHTML=`<label class="svc-pick"><span>Service</span><select onchange="setPS(this.value)">${opts.map(([k,l])=>`<option value="${k}" ${k===pSvc?'selected':''}>${esc(l)}</option>`).join('')}</select></label>`;
   const sorted=partners.filter(p=>pSvc==='all'||(p.services||[]).includes(pSvc)).sort(prioSort);
   const best=Math.min(...sorted.filter(p=>p.deep_rate!=null).map(p=>Number(p.deep_rate)));
-  $('pTable').innerHTML=sorted.map(p=>{const e=earn(p);return `<tr class="${p.deep_rate!=null&&Number(p.deep_rate)===best?'best':''}"><td><b>${esc(p.company)}</b>${p.contact?' <span class="mute">('+esc(p.contact)+')</span>':''}</td><td class="prio">${ord(p.priority)}</td><td>${(p.services||[]).map(svcName).map(esc).join(', ')}</td><td class="n">${show2(p.rating)}</td><td class="n">${show2(p.reviews)}</td><td class="n">${show2(p.deep_rate)}</td><td class="n">${show2(p.sofa_rate)}</td><td class="n">${show2(p.mattress_rate)}</td><td class="n">${show2(p.tank_rate)}</td><td class="n">${show2(p.commission_pct)}</td><td class="n">${e==null?'-':e.toFixed(2)}</td><td class="n">${show2(p.team_size)}</td><td class="${p.informed?'yes':'no'}">${p.informed?'Yes':'No'}</td></tr>`;}).join('')||'<tr><td colspan="11" class="empty">No companies yet</td></tr>';
+  $('pTable').innerHTML=sorted.map(p=>{const e=earn(p);return `<tr class="${p.deep_rate!=null&&Number(p.deep_rate)===best?'best':''}"><td><b>${esc(p.company)}</b>${p.contact?' <span class="mute">('+esc(p.contact)+')</span>':''}</td><td class="prio">${ord(p.priority)}</td><td>${(p.services||[]).map(svcName).map(esc).join(', ')}</td><td class="n">${show2(p.rating)}</td><td class="n">${show2(p.reviews)}</td><td class="n">${show2(p.deep_rate)}</td><td class="n">${show2(p.sofa_rate)}</td><td class="n">${show2(p.mattress_rate)}</td><td class="n">${show2(p.tank_rate)}</td><td class="n">${show2(p.commission_pct)}</td><td class="n">${e==null?'-':e.toFixed(2)}</td><td class="n">${show2(p.team_size)}</td><td class="${p.informed?'yes':'no'}">${p.informed?'Yes':'No'}</td></tr>`;}).join('')||'<tr><td colspan="13" class="empty">No partners for this service yet. Add one below, then tap this service on its card.</td></tr>';
   $('pList').innerHTML=sorted.map(pCard).join('');
 }
 async function toggleSvc(id,k){
