@@ -130,4 +130,22 @@ ARTICLES_DAILY = [
 <p>Rat poison can harm children, pets and hens, so keep it locked away and use it only in covered bait boxes, or leave it to trained staff. Always wear gloves when handling dead rats, traps or droppings, and wash your hands well afterwards. Do not walk barefoot in water or wet places where rats move. If anyone at home gets a fever with body pain after cleaning up after rats, see a doctor and mention it.</p>
 <p>FixMate Kerala offers pest control, including rat control, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-16"),
+    ("house-painting-after-rains-kerala", "Planning to Paint Your House After the Rains? When to Start and How to Prepare the Walls",
+     "Why the dry months after the Kerala monsoon are a good time to paint, how to check that walls are dry, what to repair before painting, and simple safety tips.",
+     "painter", "/images/painter-north-paravur.jpg", """
+<p>Many families around North Paravur and Aluva like to paint the house before Christmas, a wedding or a family function. Once the monsoon and the Thulavarsham rains slow down in November, the drier months that follow are usually the best time of the year for painting in Kerala, especially for the outside walls. But a good finish depends more on preparation than on the paint itself. Paint put on a damp or dirty wall can peel, bubble or show patches within months.</p>
+<div class="tip"><b>Quick tip:</b> wait until there have been several dry days in a row before painting outside walls. If rain is expected within a few hours, it is better to postpone exterior coats to another day.</div>
+<h2>1. Check that the walls are really dry</h2>
+<ul><li>Look for dark patches, wet spots or a cold, damp feel, especially near the floor and below windows</li><li>Check walls that face the rain, and areas below the terrace, bathroom and water tank</li><li>White powder (salt) or bubbling paint means water is still coming through</li><li>Walls that got very wet may need more dry days before painting</li></ul>
+<h2>2. Fix the cause of damp first</h2>
+<p>Painting over a damp patch only hides it for a short time. Find out where the water is coming from and repair that first.</p>
+<ul><li>Leaking pipes or bathroom joints inside the wall</li><li>Cracks on the terrace, parapet or sunshade</li><li>Blocked rain water pipes overflowing onto the wall</li><li>Broken or loose roof tiles</li></ul>
+<h2>3. Prepare the surface</h2>
+<ul><li>Scrape off loose and peeling paint</li><li>Clean moss, algae and black fungus from outside walls, and let the wall dry again</li><li>Fill cracks and holes with a suitable filler or putty, then sand smooth</li><li>Apply primer on new plaster, repaired areas and bare patches</li><li>Follow the paint maker's instructions on drying time between coats</li></ul>
+<h2>4. Plan the work room by room</h2>
+<p>Move furniture to the centre of the room and cover it, along with the floor, switches and door handles. Take down curtains, photos and wall clocks. Keep doors and windows open so the room gets air and the paint dries properly. If someone at home is elderly, unwell or has breathing problems, plan for them to stay in another room while painting is going on.</p>
+<h2>Safety note</h2>
+<p>Use a strong, steady ladder or scaffolding for high walls and outside work, and never work alone on a ladder. Keep well away from the electric line coming to the house. Switch off power before removing switch plates or painting near sockets. Store paint, thinner and turpentine away from children and away from flames, and do not burn leftover paint or rags. Wear gloves and eye protection when scraping or sanding.</p>
+<p>FixMate Kerala offers house painting, touch ups and damp patch repair in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-18"),
 ]
