@@ -148,4 +148,21 @@ ARTICLES_DAILY = [
 <p>Use a strong, steady ladder or scaffolding for high walls and outside work, and never work alone on a ladder. Keep well away from the electric line coming to the house. Switch off power before removing switch plates or painting near sockets. Store paint, thinner and turpentine away from children and away from flames, and do not burn leftover paint or rags. Wear gloves and eye protection when scraping or sanding.</p>
 <p>FixMate Kerala offers house painting, touch ups and damp patch repair in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-18"),
+    ("geyser-water-heater-safety-kerala", "Using the Geyser Again This Season? Water Heater Safety Checks and Common Problems",
+     "Simple safety checks before you start using the bathroom geyser for the cooler Kerala mornings, common water heater problems, warning signs and when to call an electrician or plumber.",
+     "electrician", "/images/electrician-north-paravur.jpg", """
+<p>From late November into December and January, early mornings around North Paravur and Aluva get a little cooler, and many families switch the bathroom geyser back on after months of not using it. Children going to school early, elderly parents and people observing the Sabarimala vratham who bathe at dawn often depend on it. A water heater uses a lot of power and sits in a wet room, so it is worth checking it properly before daily use starts.</p>
+<div class="tip"><b>Quick tip:</b> switch the geyser on only for the time you need hot water, and switch it off at the wall switch before you start bathing. Never leave it on all day or overnight.</div>
+<h2>1. Check before you switch it on</h2>
+<ul><li>Look at the wire, plug and socket for burn marks, melting or a loose fit</li><li>Make sure the geyser is fixed firmly to the wall and is not tilting</li><li>Check for rust, water drops or wet stains below the tank and around the pipe joints</li><li>Open the hot water tap first so the tank fills with water before power is given</li><li>Ask an electrician to confirm the geyser has a proper earth connection</li></ul>
+<h2>2. Common problems</h2>
+<ul><li><b>Water not getting hot:</b> the heating element or thermostat may have failed, or the indicator light shows power but the element is not working</li><li><b>MCB or RCCB trips when switched on:</b> often a fault in the element or wiring, or water reaching an electrical part</li><li><b>Water is too hot or keeps boiling:</b> a thermostat fault, which needs attention quickly</li><li><b>Brown or muddy water:</b> rust or sediment inside the tank, common with well water</li><li><b>Noise or crackling while heating:</b> scale built up on the element</li></ul>
+<h2>3. Small habits that help</h2>
+<ul><li>Keep the temperature setting moderate, not at the highest point</li><li>Do not cover the geyser or hang wet towels on it</li><li>Do not block or remove the safety valve, even if it drips a little</li><li>Have the tank flushed and the element descaled from time to time if your water is hard or from a well</li></ul>
+<h2>4. When to call for help</h2>
+<p>Stop using the geyser and call an electrician if you feel a tingle or mild shock from the tap or shower, smell burning, see sparks, or if the breaker trips again and again. Call a plumber if there is a leak from the tank, inlet or outlet pipe. Old geysers with a rusted body or leaking tank are usually better replaced than repaired.</p>
+<h2>Safety note</h2>
+<p>Water and electricity together are dangerous. Always switch off the geyser at the switch and at the MCB before touching, cleaning or checking it. Do not open the cover or try to repair the element yourself. If your home does not have an RCCB (ELCB), ask an electrician to fit one, as it can cut power quickly in case of current leakage. Keep children away from the geyser switch.</p>
+<p>FixMate Kerala offers electrician and plumbing work for geyser checks, wiring, earthing and repair in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-19"),
 ]
