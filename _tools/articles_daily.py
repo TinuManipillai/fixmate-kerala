@@ -165,4 +165,21 @@ ARTICLES_DAILY = [
 <p>Water and electricity together are dangerous. Always switch off the geyser at the switch and at the MCB before touching, cleaning or checking it. Do not open the cover or try to repair the element yourself. If your home does not have an RCCB (ELCB), ask an electrician to fit one, as it can cut power quickly in case of current leakage. Keep children away from the geyser switch.</p>
 <p>FixMate Kerala offers electrician and plumbing work for geyser checks, wiring, earthing and repair in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-19"),
+    ("floor-tiles-hollow-cracking-lifting", "Floor Tiles Sounding Hollow, Cracking or Lifting? Causes and What to Do",
+     "Why floor tiles in Kerala homes start to sound hollow, crack or lift up, simple checks you can do, what not to do, and how loose tiles are properly re-fixed.",
+     "tile-work", "/images/tile-work-north-paravur.jpg", """
+<p>Many homeowners around North Paravur and Aluva notice it one day: a tile in the hall sounds hollow when you walk on it, a thin crack runs across the kitchen floor, or two tiles slowly rise up in the middle like a small tent. This often shows up when the weather changes, such as the dry, sunny days after the rains, because tiles and the floor below them expand and shrink a little with heat and moisture. A small problem is easy to fix if you catch it early.</p>
+<div class="tip"><b>Quick tip:</b> tap the floor gently with the handle of a screwdriver or a coin. A solid tile gives a dull sound. A hollow, drum-like sound means the tile is not fully stuck to the floor below. Mark those tiles with a pencil or tape.</div>
+<h2>1. Common causes</h2>
+<ul><li>Tiles fixed with only a few spots of cement or adhesive, leaving empty space below</li><li>No small gap left at the edges near the walls, so tiles have no room to expand</li><li>Grout joints that are too thin or have cracked and let water in</li><li>Moisture coming up from below the floor, or a hidden pipe leak</li><li>The base below the floor settling, or a heavy object dropped on the tile</li></ul>
+<h2>2. Signs to watch for</h2>
+<ul><li>A hollow sound in more and more tiles over time</li><li>Cracked or crumbling grout lines</li><li>Hairline cracks in the tile itself</li><li>Tiles that rock or move when stepped on</li><li>Tiles lifting up, sometimes with a cracking sound</li><li>In the bathroom, damp patches on the wall outside or on the ceiling below</li></ul>
+<h2>3. What to do and what not to do</h2>
+<ul><li>Keep people, especially children and elderly family members, away from lifted or broken tiles</li><li>Do not hammer a lifted tile back down, as it can shatter and the problem returns</li><li>Do not pour cement or glue into the gaps and hope it holds</li><li>If a bathroom tile sounds hollow, check for a leak first, because water may be the cause</li></ul>
+<h2>4. How loose tiles are properly repaired</h2>
+<p>The hollow tiles are carefully removed, the old cement below is cleaned off, and the base is levelled. The tiles are then fixed again with proper tile adhesive spread over the full back of the tile, not in spots. A small gap is left at the walls and filled with a flexible filler or covered by skirting, and the joints are grouted again. If the original tiles break while removing them, matching tiles may be hard to find, so keep a few spare tiles from any new flooring work.</p>
+<h2>Safety note</h2>
+<p>Broken tile edges are very sharp. Wear thick footwear near damaged areas and use gloves and eye protection when picking up pieces. Cutting or grinding tiles creates fine dust, so wear a dust mask and keep the room ventilated. Switch off power before working near floor sockets or wiring.</p>
+<p>FixMate Kerala offers tile work, including loose tile re-fixing and regrouting, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-20"),
 ]
