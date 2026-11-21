@@ -182,4 +182,21 @@ ARTICLES_DAILY = [
 <p>Broken tile edges are very sharp. Wear thick footwear near damaged areas and use gloves and eye protection when picking up pieces. Cutting or grinding tiles creates fine dust, so wear a dust mask and keep the room ventilated. Switch off power before working near floor sockets or wiring.</p>
 <p>FixMate Kerala offers tile work, including loose tile re-fixing and regrouting, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-20"),
+    ("washing-machine-not-draining-smell", "Washing Machine Not Draining, Smelling Bad or Shaking? Simple Checks and When to Call a Technician",
+     "Why a washing machine in a Kerala home stops draining, starts to smell or shakes during spin, safe checks you can do yourself, and when to call a technician.",
+     "appliance-repair", "/images/appliance-repair-north-paravur.jpg", """
+<p>In many homes around North Paravur and Aluva, the washing machine runs almost every day, and the months after the rains are hard on it. Damp clothes, heavy loads of bedsheets and towels, and lint from thick fabrics all add up. Then one day the water does not drain out, the drum smells musty, or the machine shakes and walks across the floor during spin.</p>
+<div class="tip"><b>Quick tip:</b> after every wash, leave the door or lid open for a few hours so the drum and rubber seal can dry. This one habit helps a lot to stop the musty smell and black mould spots.</div>
+<h2>1. Water not draining</h2>
+<ul><li>Check that the drain hose is not bent, crushed or pushed too far into the outlet pipe</li><li>Clean the lint or pump filter, usually behind a small cover at the bottom front of front-load machines. Keep a cloth and a shallow tray ready, as water will come out</li><li>Remove coins, hair clips and buttons from pockets before washing, as these often block the pump</li></ul>
+<h2>2. Bad smell from the drum</h2>
+<ul><li>Wipe the rubber door seal and clean the dirt and hair trapped in its folds</li><li>Take out and wash the detergent drawer, as soap and fabric softener build up there</li><li>Run an empty drum cleaning cycle with hot water if your machine has one, following the user manual</li><li>Use the amount of detergent shown on the pack. Too much detergent leaves soap scum where bacteria grow</li><li>Do not leave wet clothes sitting inside the machine for hours</li></ul>
+<h2>3. Loud noise or shaking during spin</h2>
+<ul><li>Spread the clothes evenly. One heavy blanket or a few wet towels on one side can make the drum unbalanced</li><li>Do not overload the machine beyond its stated capacity</li><li>Check that the machine stands level on a firm floor and all feet touch the ground</li><li>If the machine is new or was moved, make sure the transport bolts at the back have been removed</li></ul>
+<h2>4. When to call a technician</h2>
+<p>Call for help if the machine shows an error code that does not clear after a restart, the drum does not turn, the door will not unlock, water leaks from underneath, or you hear a grinding or banging sound even with a balanced load. These can point to a faulty pump, motor, belt, bearing or control board, which should be checked by a trained person.</p>
+<h2>Safety note</h2>
+<p>Always switch off and unplug the machine before cleaning the filter, seal or hose. Do not touch the plug or socket with wet hands, and keep the plug and socket away from splashing water. The machine should be connected to a properly earthed socket. If you feel a tingle or shock when touching the machine, stop using it and get the wiring and earthing checked by an electrician. Do not open the back panel yourself.</p>
+<p>FixMate Kerala offers washing machine and other home appliance repair in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-21"),
 ]
