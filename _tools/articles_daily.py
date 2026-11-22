@@ -199,4 +199,21 @@ ARTICLES_DAILY = [
 <p>Always switch off and unplug the machine before cleaning the filter, seal or hose. Do not touch the plug or socket with wet hands, and keep the plug and socket away from splashing water. The machine should be connected to a properly earthed socket. If you feel a tingle or shock when touching the machine, stop using it and get the wiring and earthing checked by an electrician. Do not open the back panel yourself.</p>
 <p>FixMate Kerala offers washing machine and other home appliance repair in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-21"),
+    ("false-ceiling-water-stains-sagging", "Water Stains, Cracks or Sagging in Your Gypsum False Ceiling After the Rains? What to Do",
+     "Why gypsum false ceilings in Kerala homes get water stains, cracks or start to sag after the monsoon, what to check first, and when to repair or replace a board.",
+     "gypsum-false-ceiling", "/images/gypsum-false-ceiling-north-paravur.jpg", """
+<p>Gypsum false ceilings look neat and hide wiring and pipes, and many homes around North Paravur and Aluva now have them in the hall and bedrooms. But after a long monsoon, it is common to notice yellow or brown patches, fine cracks along the joints, or a part of the ceiling that has started to dip. Gypsum board does not like water, so these signs should not be ignored.</p>
+<div class="tip"><b>Quick tip:</b> before you repair or repaint a stained false ceiling, find and fix the source of the water first. If the leak is still there, the new patch will stain or sag again after the next heavy rain.</div>
+<h2>1. Common causes</h2>
+<ul><li>Leaks from the roof slab or terrace above, often through cracks or blocked rainwater outlets</li><li>Water seeping in near sheet roofs, sunshades or the edge where the roof meets the wall</li><li>A leaking pipe or bathroom line running above the ceiling</li><li>Water dripping from an AC indoor unit or its drain pipe</li><li>Normal small movement of the building, which can open hairline cracks at board joints</li></ul>
+<h2>2. What you can check yourself</h2>
+<ul><li>Note where the patch is and whether it grows after rain or stays the same on dry days</li><li>Check the terrace or roof above that spot for cracks, standing water and blocked drain holes</li><li>If there is a bathroom or AC near the patch, see whether the stain grows when they are used</li><li>Look along the ceiling from one side with a torch to see if any part has started to bend down</li></ul>
+<h2>3. Stain, crack or sag: what it usually means</h2>
+<ul><li><b>Dry stain only:</b> once the leak is fixed and the board is fully dry and firm, it can often be treated with a stain blocking primer and repainted</li><li><b>Hairline cracks at joints:</b> these can usually be filled, taped and repainted</li><li><b>Soft, swollen or sagging board:</b> gypsum that has soaked up water loses strength. That part of the board should be cut out and replaced, and the metal frame checked for rust</li></ul>
+<h2>4. When to call for help</h2>
+<p>Call a false ceiling technician if the board feels soft or wet, a section is bending down, the stain keeps spreading, or a light or fan fitted to the ceiling has become loose. If the leak comes from the roof or a pipe, a mason or plumber may also be needed to stop the water at its source.</p>
+<h2>Safety note</h2>
+<p>A wet, sagging gypsum board can break and fall without much warning. Keep people, especially children, away from under it and move furniture out of the way. False ceilings usually carry wiring and lights, so switch off the power to that room at the MCB if water is dripping near a light, fan or switch. Do not push a sagging board up with your hands or a stick, and do not stand on a chair to pull it down yourself.</p>
+<p>FixMate Kerala offers gypsum false ceiling repair and installation in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-22"),
 ]
