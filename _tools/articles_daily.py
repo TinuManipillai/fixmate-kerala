@@ -216,4 +216,21 @@ ARTICLES_DAILY = [
 <p>A wet, sagging gypsum board can break and fall without much warning. Keep people, especially children, away from under it and move furniture out of the way. False ceilings usually carry wiring and lights, so switch off the power to that room at the MCB if water is dripping near a light, fan or switch. Do not push a sagging board up with your hands or a stick, and do not stand on a chair to pull it down yourself.</p>
 <p>FixMate Kerala offers gypsum false ceiling repair and installation in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-22"),
+    ("toilet-flush-running-leaking", "Toilet Flush Running Nonstop or Leaking? Common Causes and Simple Fixes",
+     "Why a toilet flush tank keeps running, refills on its own, leaks at the base or flushes weakly in Kerala homes, what you can check yourself and when to call a plumber.",
+     "plumber", "/images/plumber-north-paravur.jpg", """
+<p>A toilet flush that keeps running, hisses quietly all night or refills by itself every few minutes is one of the most common plumbing problems in Kerala homes. It wastes a lot of water, and in homes that pump water from a well or borewell to an overhead tank, the motor has to run more often too. Most of the time the cause is a small worn part inside the flush tank.</p>
+<div class="tip"><b>Quick tip:</b> to check for a silent leak, put a few drops of food colour into the flush tank and do not flush for 20 to 30 minutes. If coloured water appears in the toilet bowl, water is leaking past the flush valve.</div>
+<h2>1. Common causes</h2>
+<ul><li>A worn or hardened rubber washer (seal) at the bottom of the tank, which lets water slowly leak into the bowl</li><li>A float that is set too high, so water keeps flowing out through the overflow pipe</li><li>A faulty fill valve (inlet valve) that does not shut off fully</li><li>Hard water deposits or dirt stuck on the seal or valve</li><li>A flush button or lever that sticks and does not return fully after flushing</li></ul>
+<h2>2. What you can check yourself</h2>
+<ul><li>Close the angle valve behind the toilet, flush, and lift the tank lid to look inside</li><li>See if water is rising above the overflow pipe. If it is, the float may need to be lowered a little</li><li>Wipe the rubber seal and the area it sits on with a soft cloth to remove dirt or scale</li><li>Press the flush button a few times to check that it moves freely and comes back up</li></ul>
+<h2>3. Leaks outside the tank</h2>
+<ul><li><b>Water at the base of the toilet:</b> this can be a failed seal between the toilet and the floor drain, and it may also cause a bad smell</li><li><b>Drips under the tank:</b> check the inlet hose connection and the angle valve, as these washers wear out over time</li><li><b>Damp wall behind a concealed tank:</b> wall mounted cisterns hidden behind tiles need a plumber to inspect through the flush plate opening</li></ul>
+<h2>4. When to call a plumber</h2>
+<p>Call a plumber if the tank keeps running after cleaning and adjusting the float, if a part inside is cracked or broken, if water leaks around the base, or if the flush is very weak even with a full tank. Replacing a fill valve or flush valve is quick work for a trained plumber, and getting the correct matching part matters.</p>
+<h2>Safety note</h2>
+<p>Do not use acid or strong chemical cleaners inside the flush tank, as they can damage rubber parts and give off harmful fumes. Be careful when lifting a ceramic tank lid, because it is heavy and breaks easily. If water from a leak is spreading on the floor near a plug point or a geyser, switch off that circuit at the MCB and dry the area before using it.</p>
+<p>FixMate Kerala offers plumbing work, including toilet flush and leak repairs, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-23"),
 ]
