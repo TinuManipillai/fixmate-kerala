@@ -68,6 +68,7 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
   .contact-btn svg{width:16px;height:16px;flex-shrink:0;}
   .call-btn{background:var(--dark);color:#fff;}
   .wa-btn{background:#25d366;color:#fff;}
+  /* Rev (24 Nov 2026): Call and WhatsApp bar on phones */.mbar{display:none}@media (max-width:700px){.mbar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:flex;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e7e8ef;box-shadow:0 -4px 14px rgba(0,0,0,0.08)}.mbar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:46px;border-radius:12px;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:700;text-decoration:none;color:#fff}.mbar .mcall{background:#1c2340}.mbar .mwa{background:#25d366}.mbar svg{width:20px;height:20px;flex:none}.wa-float{display:none !important}body{padding-bottom:72px}}
   .wa-float{position:fixed;right:18px;bottom:18px;z-index:40;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.25);}
   .wa-float svg{width:30px;height:30px;}
   .footer-contact{display:flex;gap:16px;flex-wrap:wrap;align-items:center;}
@@ -92,6 +93,15 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
   .search-row .loc-text small{display:block;font-size:11px;color:#9a9cad;}
   .search-row .svc input{border:none;outline:none;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;width:100%;color:var(--ink);}
   @media (max-width:640px){ .search-row{flex-direction:column;} .search-row .loc{flex:1;} }
+  .popular{margin:0 0 28px;}
+  .popular h2{font-size:18px;margin:0 0 12px;}
+  .pop-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+  .pop{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fff;cursor:pointer;text-align:left;font-family:inherit;}
+  .pop:hover{border-color:var(--accent);}
+  .pop b{display:block;font-size:14px;color:var(--dark);}
+  .pop span{display:block;margin-top:4px;font-size:15px;font-weight:800;color:var(--accent);}
+  @media (max-width:1100px){ .pop-row{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:700px){ .pop-row{grid-template-columns:repeat(2,1fr);} }
   .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   .cat-card{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:box-shadow .15s,transform .15s;}
   .cat-card:hover{box-shadow:0 8px 18px rgba(20,21,26,0.08);transform:translateY(-2px);border-color:var(--accent);}
@@ -230,6 +240,8 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
       </div>
     </div>
   </div>
+  <!-- Rev (24 Nov 2026): popular jobs with prices near the top -->
+  <section class="popular" aria-label="Popular jobs and prices"><h2>Popular jobs and prices</h2><div class="pop-row" id="popRow"></div></section>
   <div class="cat-grid" id="catGrid"></div>
 </div>
 
@@ -537,6 +549,28 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
     card.querySelector('.cat-photo img').addEventListener('error', function(){ handleImgError(this); });
     if (!cat.soon) card.onclick = () => openCategory(cat.id);
     catGrid.appendChild(card);
+  });
+
+  // Rev (24 Nov 2026): popular jobs, prices read from CATEGORIES so they stay in sync
+  const POPULAR = [
+    ['electrical', 'Fan installation or repair', 'Fan repair'],
+    ['plumbing', 'Tap and faucet repair', 'Tap repair'],
+    ['appliance', 'AC general service', 'AC service'],
+    ['interlock', 'Water tank cleaning', 'Water tank cleaning', '₹1 per litre'],
+    ['cleaning', 'Full home deep cleaning, up to 650 sq ft', 'Home deep cleaning', 'from ₹3,500'],
+    ['pest', 'General pest control, per visit', 'Pest control']
+  ];
+  const popRow = document.getElementById('popRow');
+  POPULAR.forEach(([catId, taskName, label, priceText]) => {
+    const cat = CATEGORIES.find(c => c.id === catId);
+    const task = cat && cat.tasks.find(t => t.name === taskName);
+    if (!task) return;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'pop';
+    b.innerHTML = '<b>' + label + '</b><span>' + (priceText || ('₹' + priceOf(task))) + '</span>';
+    b.onclick = () => openCategory(catId);
+    popRow.appendChild(b);
   });
 
   function filterCategories(query){
@@ -892,5 +926,6 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
   }
 </script>
 <a class="wa-float" href="https://wa.me/917736516727?text=Hi%20FixMate%20Kerala%2C%20I%20need%20a%20service%20in%20North%20Paravur." target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg style="color:#fff" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg></a>
+<nav class="mbar" aria-label="Call or WhatsApp FixMate Kerala"><a class="mcall" href="tel:+917736516727"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a><a class="mwa" href="https://wa.me/917736516727?text=Hi%20FixMate%20Kerala%2C%20I%20need%20a%20service%20in%20North%20Paravur." target="_blank" rel="noopener"><svg style="color:#fff" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.8-.7-1.4-1.6-1.6-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2.1-.3 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>WhatsApp</a></nav>
 </body>
 </html>
