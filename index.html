@@ -329,9 +329,10 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
   // Rev (12 Nov 2026): quote only works show 'Quote' instead of a price
   function money(p, t){ return (t.quote || t.isQuote) ? 'Quote' : '₹' + p; }
   function taskPrice(hours){ return hours * 100 + 99; }
-  function priceOf(t){ return t.quote || t.isQuote ? 0 : t.isConsult ? CONSULT_FEE : t.isSmall ? SMALL_FEE : t.perLitre ? (t.litres || 1000) : (t.price != null ? t.price : taskPrice(t.hours)); }
+  function sqftPrice(s){ return s <= 650 ? 3500 : Math.round(s * 5.5); }
+  function priceOf(t){ return t.quote || t.isQuote ? 0 : t.isConsult ? CONSULT_FEE : t.isSmall ? SMALL_FEE : t.perSqft ? sqftPrice(t.sqft || 1000) : t.perLitre ? (t.litres || 1000) : (t.price != null ? t.price : taskPrice(t.hours)); }
   // Rev (12 Nov 2026): fixed price tasks (e.g. water tank cleaning at ₹1 per litre) show a note instead of hours
-  function durationOf(t){ return (t.quote || t.isQuote) ? 'price on visit' : t.isConsult ? 'up to 30 mins' : t.isSmall ? 'up to 15 mins' : t.perLitre ? ((t.litres || 1000) + ' litres at ₹1 per litre') : t.note ? t.note : (t.hours + ' hr' + (t.hours>1?'s':'')); }
+  function durationOf(t){ return (t.quote || t.isQuote) ? 'price on visit' : t.isConsult ? 'up to 30 mins' : t.isSmall ? 'up to 15 mins' : t.perSqft ? ((t.sqft || 1000) + ' sq ft home') : t.perLitre ? ((t.litres || 1000) + ' litres at ₹1 per litre') : t.note ? t.note : (t.hours + ' hr' + (t.hours>1?'s':'')); }
   const ICONS = {
     bolt: '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
     drop: '<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2s7 7.5 7 12a7 7 0 0 1-14 0c0-4.5 7-12 7-12z"></path></svg>',
@@ -450,9 +451,9 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
       ]},
     { id:'cleaning', name:'Home deep cleaning', short:'Deep cleaning', icon:'sparkle', color:'#2f7a6e', img:'home-deep-cleaning', photo:'/images/cat-cleaning.jpg',
       tasks:[
-        {name:'Bathroom deep cleaning, per bathroom', hours:1, img:'bathroom-deep-cleaning', bullets:['Tile, fittings, and floor scrubbing']},
-        {name:'Kitchen deep cleaning', hours:2, img:'kitchen-deep-cleaning', bullets:['Grease removal from surfaces and cabinets']},
-        {name:'Full home cleaning, per room', hours:1, img:'full-home-cleaning', bullets:['General dusting, mopping, and tidying']}
+        // Rev (24 Nov 2026): fixed ₹3,500 up to 650 sq ft, or per sq ft at ₹5.5 with a minimum of ₹3,500
+        {name:'Full home deep cleaning, up to 650 sq ft', price:3500, note:'up to 650 sq ft', img:'full-home-cleaning', bullets:['Complete deep clean of the whole house, including kitchen and bathrooms','Fixed price for homes up to 650 sq ft']},
+        {name:'Full home deep cleaning, per sq ft', perSqft:true, sqft:1000, img:'full-home-cleaning', bullets:['Complete deep clean of the whole house, including kitchen and bathrooms','₹5.5 per sq ft. Homes up to 650 sq ft are ₹3,500. Enter your home size below']}
       ]},
     { id:'pest', name:'Pest control', icon:'bug', color:'#c1502b', img:'pest-control-service', photo:'/images/cat-pest.jpg',
       tasks:[
@@ -484,7 +485,6 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
     furniture: { name:'Loose screw or joint tightening', icon:'box', img:'furniture-tightening', bullets:['Quick tightening on one furniture piece'] },
     mosquito: { name:'Mosquito net frame cleaning', icon:'net', img:'mosquito-net-cleaning', bullets:['Cleaning dust off an existing net'] },
     sofa: { name:'Spot stain removal', icon:'sofa', img:'sofa-spot-cleaning', bullets:['Quick treatment for a single fresh stain'] },
-    cleaning: { name:'Quick tidy up, one room', icon:'sparkle', img:'quick-room-tidy', bullets:['Dusting and surface wipe down for one room'] },
     pest: { name:'Spot spray, single area', icon:'bug', img:'spot-pest-spray', bullets:['Quick spray for one problem spot'] }
   };
 
@@ -607,6 +607,7 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
             <div class="task-price"><b>${money(price, t)}</b><span class="dot">&middot;</span>${duration}</div>
             <ul class="task-bullets">${(t.isConsult || t.isSmall || t.quote) ? '' : '<li>Consultation fee is adjusted into the final job cost</li>'}${t.bullets.map(b => '<li>'+b+'</li>').join('')}</ul>
             ${t.perLitre ? `<label style="display:block;font-size:13px;font-weight:600;margin-top:8px;">Tank size in litres <input type="number" min="100" step="100" value="${t.litres || 1000}" id="litres-${key}" oninput="setLitres('${id}',${i},this.value)" style="width:110px;margin-left:6px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;"></label>` : ''}
+            ${t.perSqft ? `<label style="display:block;font-size:13px;font-weight:600;margin-top:8px;">Home size in sq ft <input type="number" min="100" step="50" value="${t.sqft || 1000}" id="sqft-${key}" oninput="setSqft('${id}',${i},this.value)" style="width:110px;margin-left:6px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;"></label>` : ''}
           </div>
           <div class="task-media">
             <div class="thumb" style="background:${cat.color};overflow:hidden;padding:0;">
@@ -634,6 +635,16 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
     if (cart[key]) { cart[key].price = priceOf(t); cart[key].note = durationOf(t); renderCart(); }
   }
 
+  // Rev (24 Nov 2026): full home deep cleaning priced by home size in sq ft
+  function setSqft(catId, idx, v){
+    const t = CATEGORIES.find(c => c.id === catId).tasks[idx];
+    t.sqft = Math.max(100, Math.round(Number(v) || 0));
+    const key = catId + '-' + idx;
+    const card = document.getElementById('taskcard-' + catId + '-' + idx);
+    if (card) card.querySelector('.task-price').innerHTML = '<b>₹' + priceOf(t) + '</b><span class="dot">&middot;</span>' + durationOf(t);
+    if (cart[key]) { cart[key].price = priceOf(t); cart[key].note = durationOf(t); renderCart(); }
+  }
+
   function toggleTask(key, catId, idx){
     const cat = CATEGORIES.find(c => c.id === catId);
     const t = cat.tasks[idx];
@@ -642,8 +653,8 @@ if(ev)gtag('event',ev,{link_url:h,page_path:location.pathname});},true);
     } else {
       cart[key] = {
         catId, name: t.name,
-        hours: (t.isConsult || t.isSmall || t.note || t.perLitre) ? null : t.hours,
-        price: priceOf(t), note: t.perLitre ? durationOf(t) : (t.note || null),
+        hours: (t.isConsult || t.isSmall || t.note || t.perLitre || t.perSqft) ? null : t.hours,
+        price: priceOf(t), note: (t.perLitre || t.perSqft) ? durationOf(t) : (t.note || null),
         isConsult: !!t.isConsult, isSmall: !!t.isSmall, isQuote: !!t.quote
       };
       // quote only works need the consultation visit, so add it too
