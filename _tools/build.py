@@ -21,6 +21,8 @@ STYLE = re.search(r"<style>.*?</style>", src, re.S).group(0)
 CALL_SVG = re.search(r'(<svg viewBox="0 0 24 24" fill="none".*?</svg>)', src, re.S).group(1)
 WA_SVG = re.search(r'(<svg viewBox="0 0 24 24" fill="currentColor">.*?</svg>)', src, re.S).group(1)
 FOOTER = re.search(r"<footer>.*?</footer>", src, re.S).group(0)
+# Rev (24 Nov 2026): Call and WhatsApp bar on phones; its CSS comes from the electrician page STYLE
+PHONE_SVG = re.search(r'<nav class="mbar"[^>]*><a class="mcall"[^>]*>(<svg.*?</svg>)', src, re.S).group(1)
 
 EXTRA_CSS = """<style>
 .svc{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
@@ -93,6 +95,7 @@ def tail(wa):
                           '<span><a href="/areas">Areas we serve</a><a href="/blog/">Home tips</a>Home repairs in North Paravur, Kerala</span>')
     return f"""{foot}
 <a class="wa-float" href="{wa}" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">{WA_SVG}</a>
+<nav class="mbar" aria-label="Call or WhatsApp FixMate Kerala"><a class="mcall" href="tel:{TEL}">{PHONE_SVG}Call</a><a class="mwa" href="{wa}" target="_blank" rel="noopener">{WA_SVG}WhatsApp</a></nav>
 </body>
 </html>
 """
