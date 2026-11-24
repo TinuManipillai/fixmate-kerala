@@ -233,4 +233,21 @@ ARTICLES_DAILY = [
 <p>Do not use acid or strong chemical cleaners inside the flush tank, as they can damage rubber parts and give off harmful fumes. Be careful when lifting a ceramic tank lid, because it is heavy and breaks easily. If water from a leak is spreading on the floor near a plug point or a geyser, switch off that circuit at the MCB and dry the area before using it.</p>
 <p>FixMate Kerala offers plumbing work, including toilet flush and leak repairs, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-23"),
+    ("bathroom-tile-grout-black-mould", "Black Grout and Mould in Bathroom Tiles? How to Clean It and When to Regrout",
+     "Why bathroom tile grout turns black or green in Kerala homes, how to clean it safely, how to stop it coming back, and when the grout needs to be redone.",
+     "tile-work", "/images/tile-work-north-paravur.jpg", """
+<p>After the long monsoon and Thulavarsham rains, many Kerala homes find black or green lines between the bathroom tiles. The grout, the thin filling between tiles, is slightly porous. It soaks up water and soap, and in a damp bathroom that rarely dries fully, mould grows on it. Most of the time it can be cleaned, but sometimes the grout itself is worn out and needs to be redone.</p>
+<div class="tip"><b>Quick tip:</b> after a bath, open the window or run the exhaust fan for 15 to 20 minutes and push the water off the floor with a wiper. A bathroom that dries quickly gets much less mould.</div>
+<h2>1. Why grout turns black</h2>
+<ul><li>Water stays on the floor and walls for a long time</li><li>Poor ventilation, no exhaust fan or a closed window</li><li>Soap, shampoo and hair oil left on the grout feed the mould</li><li>Old, cracked or crumbling grout that holds water</li><li>A slow leak behind the wall keeps the grout wet from inside</li></ul>
+<h2>2. How to clean it yourself</h2>
+<ul><li>Start mild: make a paste of baking soda and a little water, spread it on the grout and scrub with an old toothbrush or a stiff grout brush</li><li>For stubborn spots, use a tile and grout cleaner from the shop and follow the label</li><li>Rinse well with clean water and dry the area</li><li>Work on a small section at a time and wear rubber gloves</li><li>Do not use a wire brush or metal scraper, as it scratches tiles and digs out the grout</li></ul>
+<h2>3. Stop it coming back</h2>
+<ul><li>Keep the bathroom ventilated every day, not only after cleaning</li><li>Scrub the grout lightly once a week before mould builds up</li><li>Once the grout is clean and fully dry, a grout sealer can help it absorb less water</li><li>Fix dripping taps and leaking shower fittings quickly</li></ul>
+<h2>4. When the grout needs to be redone</h2>
+<p>Cleaning will not help if the grout is cracked, crumbling, missing in places, or the black marks come back within days. Also look for damp patches or peeling paint on the wall on the other side of the bathroom, as water may be getting in through the gaps. In these cases the old grout is raked out and new grout is filled in. Epoxy grout is an option in wet areas because it absorbs much less water, but it needs careful work by someone who has used it before.</p>
+<h2>Safety note</h2>
+<p>Never mix bleach with acid based toilet or tile cleaners, or with ammonia. The mix gives off poisonous gas. Use one cleaner at a time, rinse well before trying another, keep the window open and keep children away while cleaning. Wet tiles with cleaner on them are slippery, so stand carefully and wear slippers with grip.</p>
+<p>FixMate Kerala offers tile work, including bathroom regrouting and broken tile replacement, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-24"),
 ]
