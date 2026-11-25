@@ -250,4 +250,22 @@ ARTICLES_DAILY = [
 <p>Never mix bleach with acid based toilet or tile cleaners, or with ammonia. The mix gives off poisonous gas. Use one cleaner at a time, rinse well before trying another, keep the window open and keep children away while cleaning. Wet tiles with cleaner on them are slippery, so stand carefully and wear slippers with grip.</p>
 <p>FixMate Kerala offers tile work, including bathroom regrouting and broken tile replacement, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-24"),
+    ("cabinet-wardrobe-door-sagging-hinges", "Kitchen Cabinet or Wardrobe Door Sagging and Not Closing? Hinge Fixes and When to Call a Carpenter",
+     "Why kitchen cabinet and wardrobe doors sag, rub or will not close in Kerala homes, simple hinge adjustments you can try, and when a carpenter is needed.",
+     "carpenter", "/images/carpenter-north-paravur.jpg", """
+<p>A kitchen cabinet shutter that hangs lower on one side, a wardrobe door that rubs against the next one, or a door that swings open by itself is a common problem in Kerala homes. Daily use, heavy shutters and months of damp monsoon air all take their toll. The good news is that many of these problems come from loose or badly adjusted hinges and can be fixed in a few minutes with a screwdriver.</p>
+<div class="tip"><b>Quick tip:</b> before adjusting anything, open the door and look at the hinges. Tighten any loose screw first. Often that alone brings the door back into line.</div>
+<h2>1. Common reasons doors sag or will not close</h2>
+<ul><li>Hinge screws have worked loose over time</li><li>The screw holes in plywood or particle board have worn out, so screws spin without gripping</li><li>Hinges are out of adjustment after the door was knocked or leaned on</li><li>Too much weight hung on the door, such as hooks or bags</li><li>Board or wood swollen from damp, especially near the sink</li><li>A broken hinge or a cracked hinge cup</li></ul>
+<h2>2. Adjusting concealed hinges</h2>
+<p>Most modular kitchens and wardrobes use concealed hinges, the round cup type fixed inside the door. They usually have adjustment screws:</p>
+<ul><li>The screw nearest the door moves the door left or right, to fix uneven gaps between two doors</li><li>The screw further back moves the door in or out, so it closes flush with the cabinet</li><li>On many hinges, loosening the mounting plate screws lets you move the door up or down</li><li>Turn each screw a little at a time, close the door and check, then adjust again</li><li>Adjust the top and bottom hinges by the same amount so the door does not twist</li></ul>
+<h2>3. When screws will not hold</h2>
+<p>If a screw keeps spinning in its hole, the board has worn out at that spot. Do not just push in a longer screw, as it may come through the front of the door. A carpenter can fill the hole with a wooden plug and glue, or move the hinge slightly to fresh board. Doors near the sink with swollen, crumbling edges usually need the shutter or board replaced.</p>
+<h2>4. When to call a carpenter</h2>
+<ul><li>A hinge is broken or the hinge cup has pulled out of the door</li><li>The board is swollen, soft or crumbling around the hinges</li><li>Adjusting does not fix the gap or the door still will not close</li><li>Heavy tall wardrobe doors or doors with mirrors that need to be removed</li><li>Drawer channels are also stuck or broken</li></ul>
+<h2>Safety note</h2>
+<p>Large wardrobe doors and mirror doors are heavy. Do not remove them alone, and keep one hand supporting the door while loosening hinge screws. Keep children away while working. If a tall wardrobe or cabinet feels unsteady or leans forward, empty it and have it fixed to the wall before using it again.</p>
+<p>FixMate Kerala offers carpentry work, including hinge replacement and kitchen cabinet and wardrobe repairs, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-25"),
 ]
