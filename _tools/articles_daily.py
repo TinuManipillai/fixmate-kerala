@@ -268,4 +268,21 @@ ARTICLES_DAILY = [
 <p>Large wardrobe doors and mirror doors are heavy. Do not remove them alone, and keep one hand supporting the door while loosening hinge screws. Keep children away while working. If a tall wardrobe or cabinet feels unsteady or leans forward, empty it and have it fixed to the wall before using it again.</p>
 <p>FixMate Kerala offers carpentry work, including hinge replacement and kitchen cabinet and wardrobe repairs, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-25"),
+    ("wall-cracks-plaster-when-to-worry-kerala", "Cracks in Walls After the Rains? Which Plaster Cracks Are Normal and When to Worry",
+     "How to tell harmless hairline plaster cracks from serious wall cracks in Kerala homes, how to watch a crack, how small cracks are repaired and when to get an expert.",
+     "masonry-work", "/images/masonry-work-north-paravur.jpg", """
+<p>As the Thulavarsham rains end and the dry weather of December begins, many Kerala homeowners notice thin cracks on walls and ceilings. Walls that soaked up water for months dry out and shrink slightly. Most of these cracks are only in the plaster and are not dangerous. A few, though, are signs of a problem that should be checked early.</p>
+<div class="tip"><b>Quick tip:</b> draw a short pencil line across each end of a crack and write the date next to it. Check again after a few weeks. If the crack has grown past your marks or become wider, get it inspected.</div>
+<h2>1. Cracks that are usually harmless</h2>
+<ul><li>Very thin hairline cracks in the plaster, often in a spider web or random pattern</li><li>Thin straight lines where a wall meets a concrete beam or column, because brick and concrete move slightly differently</li><li>Fine cracks that appear after new plastering or after a long wet season and do not grow</li></ul>
+<h2>2. Cracks that need attention</h2>
+<ul><li>Cracks wide enough to slip a coin edge into, or that keep getting wider</li><li>Diagonal cracks running from the corners of doors and windows</li><li>Cracks in concrete beams, columns or the roof slab, especially with rust stains</li><li>Concrete pieces falling off and showing the steel bars inside</li><li>Doors or windows that suddenly start jamming near new cracks</li><li>Cracks in a compound wall that is leaning or bulging</li><li>Cracks with dampness, as water getting in can rust the steel and damage the wall over time</li></ul>
+<h2>3. How small cracks are repaired</h2>
+<p>For hairline plaster cracks, the crack is opened slightly into a small V groove, cleaned of dust, and filled with a crack filler or polymer modified putty that stays a little flexible. On outside walls, the filled crack should then get a good exterior primer and paint, so rain cannot enter again. Cracks between brick and concrete often need a strip of mesh tape over the joint before filling, so they do not reopen.</p>
+<h2>4. When to call an expert</h2>
+<p>If you see any of the warning signs in section 2, do not just fill and paint the crack. The cause, such as roof leakage, ground settling or rusting steel, has to be found first. For cracks in beams, columns or the slab, a civil engineer should check the building before repairs. Masonry workers can then carry out the repair as advised.</p>
+<h2>Safety note</h2>
+<p>If plaster or concrete is falling from a ceiling or sunshade, keep people away from the area below until it is checked. Do not drill, hammer or hang heavy items near a wide crack. If a crack runs near a switch board or wiring, or water is seeping through it near electrical points, switch off that circuit at the MCB and have an electrician look at it.</p>
+<p>FixMate Kerala offers masonry work, including plaster crack repair and small wall patch work, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-26"),
 ]
