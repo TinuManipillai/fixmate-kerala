@@ -285,4 +285,21 @@ ARTICLES_DAILY = [
 <p>If plaster or concrete is falling from a ceiling or sunshade, keep people away from the area below until it is checked. Do not drill, hammer or hang heavy items near a wide crack. If a crack runs near a switch board or wiring, or water is seeping through it near electrical points, switch off that circuit at the MCB and have an electrician look at it.</p>
 <p>FixMate Kerala offers masonry work, including plaster crack repair and small wall patch work, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-26"),
+    ("switch-socket-sparking-hot-burning-smell", "Switch or Socket Sparking, Getting Hot or Smelling of Burning? What to Do",
+     "Why plug sockets spark, heat up or smell of burning in Kerala homes, which signs are dangerous, what you can safely do and when to call an electrician.",
+     "electrician", "/images/electrician-north-paravur.jpg", """
+<p>December brings more cooking, guests and festive lights, so plugs and sockets in many Kerala homes get used more than usual. A small spark when you put in a plug can be normal, but a socket that sparks often, feels hot, looks brown or smells of burning is a warning sign. Loose or worn sockets are a common cause of melted plugs and electrical fires, so they should not be ignored.</p>
+<div class="tip"><b>Quick tip:</b> once a month, touch the plug of high power appliances like the iron, mixie, water heater or induction cooker after use. If the plug or the socket face feels hotter than warm, stop using that socket and get it checked.</div>
+<h2>1. What is normal and what is not</h2>
+<ul><li>Normal: a tiny, quick spark inside the socket when you switch on a heavy appliance, which stops at once</li><li>Not normal: sparks every time, sparks you can see outside the socket, or a crackling or buzzing sound</li><li>Not normal: brown or black marks around the pin holes, a melted or soft plastic plate, or a fishy or burning plastic smell</li><li>Not normal: plugs that fall out easily or have to be held or bent to work</li></ul>
+<h2>2. Common causes</h2>
+<ul><li>Loose sockets where the metal contacts no longer grip the plug pins firmly</li><li>Loose wire screws behind the switch board, which heat up under load</li><li>Using a 6A socket for a heater, iron or other heavy appliance that needs a 16A socket</li><li>Multi plug adapters and extension boards running several appliances from one socket</li><li>Moisture and dust inside the board, common near kitchens, bathrooms and outer walls after the rains</li><li>Old switches and sockets that have simply worn out</li></ul>
+<h2>3. What you can safely do</h2>
+<ul><li>Stop using the socket and unplug what is connected to it</li><li>Do not pull a hot or melted plug out with wet hands. Switch off at the MCB first</li><li>Plug heavy appliances into a proper 16A socket and use one appliance per socket</li><li>Replace cracked plugs and damaged appliance cords</li><li>Do not open the switch board or tighten wires yourself</li></ul>
+<h2>4. When to call an electrician</h2>
+<p>Call an electrician if a socket sparks often, feels hot, shows burn marks, smells of burning, or if the MCB trips when you use it. The electrician will switch off the supply, check and tighten the connections, replace the worn socket or switch, and check that the wiring and socket rating suit the appliance. If several sockets in the house are getting hot, the wiring and earthing may need a proper check.</p>
+<h2>Safety note</h2>
+<p>If you see smoke, flames or melting plastic at a switch board, switch off the main switch or MCB at once if you can reach it safely. Never pour water on an electrical fire. Keep children away from damaged sockets, and do not use a burnt socket again until it is repaired.</p>
+<p>FixMate Kerala offers electrician services, including switch and socket replacement and wiring checks, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-27"),
 ]
