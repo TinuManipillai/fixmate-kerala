@@ -302,4 +302,21 @@ ARTICLES_DAILY = [
 <p>If you see smoke, flames or melting plastic at a switch board, switch off the main switch or MCB at once if you can reach it safely. Never pour water on an electrical fire. Keep children away from damaged sockets, and do not use a burnt socket again until it is repaired.</p>
 <p>FixMate Kerala offers electrician services, including switch and socket replacement and wiring checks, in North Paravur and nearby places, with the price agreed before work starts.</p>
 """, "2026-11-27"),
+    ("dripping-tap-leaking-sink-pipe", "Dripping Tap or Water Leaking Under the Sink? Causes and Simple Fixes",
+     "Why taps keep dripping and sinks leak underneath in Kerala homes, simple checks you can do safely, and when to call a plumber.",
+     "plumber", "/images/plumber-north-paravur.jpg", """
+<p>With Christmas cooking and guests at home in December, kitchen and bathroom taps get used much more than usual. A tap that keeps dripping after you close it, or a small puddle in the cabinet under the sink, is easy to ignore. But a slow leak wastes tank water, keeps the motor running more often, and can rot the cabinet base, stain the floor and bring cockroaches and mould.</p>
+<div class="tip"><b>Quick tip:</b> find the small angle valve on the wall under each sink and wash basin, and check that it turns. If a tap or pipe starts leaking badly, you can close just that valve instead of shutting water to the whole house.</div>
+<h2>1. Why a tap keeps dripping</h2>
+<ul><li>Older screw down taps have a rubber washer that hardens and wears out over time</li><li>Quarter turn and lever taps have a ceramic cartridge that can wear or get blocked by sand and scale</li><li>Water leaking from the base or handle usually means a worn O ring or a loose nut</li><li>Closing the tap very tightly to stop a drip only damages the washer faster</li></ul>
+<h2>2. Why water leaks under the sink</h2>
+<ul><li>A loose or cracked joint at the sink waste or the bend pipe below it</li><li>A flexible connection hose that is old, bulging or rusted at the ends</li><li>A leaking angle valve or a loose nut where the hose joins it</li><li>Worn sealant around the sink edge, so water from the counter runs down inside</li></ul>
+<h2>3. Simple checks you can do</h2>
+<ul><li>Dry all the pipes with a cloth, keep a dry paper under them, then run the tap and watch where the first drop appears</li><li>Clean the aerator at the tap mouth if the flow is weak or sprays sideways</li><li>Gently hand tighten a loose plastic waste nut. Do not force it with a spanner, it can crack</li><li>Replace a bulging or rusted connection hose quickly, as it can burst</li><li>If you change a washer yourself, close the angle valve or main valve first and open the tap to release pressure</li></ul>
+<h2>4. When to call a plumber</h2>
+<p>Call a plumber if the drip continues after a washer change, the leak comes from inside the wall, the angle valve itself is leaking or stuck, or the cabinet base has already gone soft. The plumber can replace the cartridge, valve, hose or waste fittings, redo the sealant and check for hidden leaks. A damp patch on a wall near a tap or below a bathroom can mean a concealed pipe leak, and that needs a proper check.</p>
+<h2>Safety note</h2>
+<p>If water is leaking near a switch board, socket, water heater or the washing machine plug, switch off that circuit at the MCB before you go near it. Do not stand in water and touch electrical points.</p>
+<p>FixMate Kerala offers plumber services, including tap, valve and sink pipe repairs, in North Paravur and nearby places, with the price agreed before work starts.</p>
+""", "2026-11-28"),
 ]
